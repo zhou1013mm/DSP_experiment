@@ -1,0 +1,902 @@
+!SESSION 2026-09-17 08:43:16.275 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_102
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=zh_CN
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+This is a continuation of log file D:\DSP_experiment\.metadata\.bak_0.log
+Created Time: 2026-09-17 08:46:40.523
+
+!ENTRY com.analog.crosscore.managedbuilder.core 4 0 2026-09-17 08:46:40.523
+!MESSAGE Unexpected exception
+!STACK 0
+java.io.IOException: Cannot run program "C:\Analog Devices\CrossCore Embedded Studio 2.9.3\cc21k": CreateProcess error=4551, 应用程序控制策略已阻止此文件。
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1048)
+	at com.analog.crosscore.managedbuilder.core.scanner.InfoScanner.scan(InfoScanner.java:45)
+	at com.analog.crosscore.managedbuilder.core.scanner.CompilerInfoProvider.invokeProvider(CompilerInfoProvider.java:105)
+	at com.analog.crosscore.managedbuilder.core.scanner.CrossCoreBuiltinSpecsDetector.getSettingEntries(CrossCoreBuiltinSpecsDetector.java:49)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer$LanguageSettingsWorkspaceProvider.getSettingEntries(LanguageSettingsProvidersSerializer.java:180)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesPooled(LanguageSettingsProvidersSerializer.java:1421)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesUpResourceTree(LanguageSettingsProvidersSerializer.java:1449)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesByKind(LanguageSettingsProvidersSerializer.java:1508)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesByKind(LanguageSettingsProvidersSerializer.java:1550)
+	at org.eclipse.cdt.core.settings.model.util.PathEntryTranslator.collectResourceDataEntries(PathEntryTranslator.java:2064)
+	at org.eclipse.cdt.core.settings.model.util.PathEntryTranslator.access$11(PathEntryTranslator.java:2037)
+	at org.eclipse.cdt.core.settings.model.util.PathEntryTranslator$1.visit(PathEntryTranslator.java:2025)
+	at org.eclipse.cdt.core.settings.model.util.PathSettingsContainer.doAccept(PathSettingsContainer.java:519)
+	at org.eclipse.cdt.core.settings.model.util.PathSettingsContainer.accept(PathSettingsContainer.java:515)
+	at org.eclipse.cdt.core.settings.model.util.PathEntryTranslator.collectEntries(PathEntryTranslator.java:2017)
+	at org.eclipse.cdt.internal.core.settings.model.ConfigBasedPathEntryStore.getEntries(ConfigBasedPathEntryStore.java:237)
+	at org.eclipse.cdt.internal.core.settings.model.ConfigBasedPathEntryStore.handleEvent(ConfigBasedPathEntryStore.java:198)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.notifyListeners(CProjectDescriptionManager.java:2180)
+	at org.eclipse.cdt.internal.core.settings.model.SetCProjectDescriptionOperation.executeOperation(SetCProjectDescriptionOperation.java:140)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.execute(CModelOperation.java:341)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.run(CModelOperation.java:607)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2240)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2267)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(CModelOperation.java:638)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCProjectDescriptionStorage.setProjectDescription(AbstractCProjectDescriptionStorage.java:203)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionStorageManager.setProjectDescription(CProjectDescriptionStorageManager.java:149)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(CProjectDescriptionManager.java:853)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(CProjectDescriptionManager.java:814)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$6.run(CProjectDescriptionManager.java:548)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$5.run(CProjectDescriptionManager.java:505)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2240)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.runAtomic(CProjectDescriptionManager.java:501)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.access$4(CProjectDescriptionManager.java:499)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$4.run(CProjectDescriptionManager.java:482)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+Caused by: java.io.IOException: CreateProcess error=4551, 应用程序控制策略已阻止此文件。
+	at java.lang.ProcessImpl.create(Native Method)
+	at java.lang.ProcessImpl.<init>(ProcessImpl.java:386)
+	at java.lang.ProcessImpl.start(ProcessImpl.java:137)
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1029)
+	... 34 more
+
+!ENTRY com.analog.crosscore.managedbuilder.core 4 0 2026-09-17 08:46:40.885
+!MESSAGE Unexpected exception
+!STACK 0
+java.io.IOException: Cannot run program "C:\Analog Devices\CrossCore Embedded Studio 2.9.3\cc21k": CreateProcess error=4551, 应用程序控制策略已阻止此文件。
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1048)
+	at com.analog.crosscore.managedbuilder.core.scanner.InfoScanner.scan(InfoScanner.java:45)
+	at com.analog.crosscore.managedbuilder.core.scanner.CompilerInfoProvider.invokeProvider(CompilerInfoProvider.java:105)
+	at com.analog.crosscore.managedbuilder.core.scanner.CrossCoreBuiltinSpecsDetector.getSettingEntries(CrossCoreBuiltinSpecsDetector.java:49)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer$LanguageSettingsWorkspaceProvider.getSettingEntries(LanguageSettingsProvidersSerializer.java:180)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesPooled(LanguageSettingsProvidersSerializer.java:1421)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesUpResourceTree(LanguageSettingsProvidersSerializer.java:1449)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesByKind(LanguageSettingsProvidersSerializer.java:1508)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesByKind(LanguageSettingsProvidersSerializer.java:1550)
+	at org.eclipse.cdt.core.settings.model.util.PathEntryTranslator.collectResourceDataEntries(PathEntryTranslator.java:2064)
+	at org.eclipse.cdt.core.settings.model.util.PathEntryTranslator.access$11(PathEntryTranslator.java:2037)
+	at org.eclipse.cdt.core.settings.model.util.PathEntryTranslator$1.visit(PathEntryTranslator.java:2025)
+	at org.eclipse.cdt.core.settings.model.util.PathSettingsContainer.doAccept(PathSettingsContainer.java:519)
+	at org.eclipse.cdt.core.settings.model.util.PathSettingsContainer.accept(PathSettingsContainer.java:515)
+	at org.eclipse.cdt.core.settings.model.util.PathEntryTranslator.collectEntries(PathEntryTranslator.java:2017)
+	at org.eclipse.cdt.internal.core.settings.model.ConfigBasedPathEntryStore.getEntries(ConfigBasedPathEntryStore.java:237)
+	at org.eclipse.cdt.internal.core.settings.model.ConfigBasedPathEntryStore.handleEvent(ConfigBasedPathEntryStore.java:198)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.notifyListeners(CProjectDescriptionManager.java:2180)
+	at org.eclipse.cdt.internal.core.settings.model.SetCProjectDescriptionOperation.executeOperation(SetCProjectDescriptionOperation.java:140)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.execute(CModelOperation.java:341)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.run(CModelOperation.java:607)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2240)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2267)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(CModelOperation.java:638)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCProjectDescriptionStorage.setProjectDescription(AbstractCProjectDescriptionStorage.java:203)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionStorageManager.setProjectDescription(CProjectDescriptionStorageManager.java:149)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(CProjectDescriptionManager.java:853)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(CProjectDescriptionManager.java:814)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$6.run(CProjectDescriptionManager.java:548)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$5.run(CProjectDescriptionManager.java:505)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2240)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.runAtomic(CProjectDescriptionManager.java:501)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.access$4(CProjectDescriptionManager.java:499)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$4.run(CProjectDescriptionManager.java:482)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+Caused by: java.io.IOException: CreateProcess error=4551, 应用程序控制策略已阻止此文件。
+	at java.lang.ProcessImpl.create(Native Method)
+	at java.lang.ProcessImpl.<init>(ProcessImpl.java:386)
+	at java.lang.ProcessImpl.start(ProcessImpl.java:137)
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1029)
+	... 34 more
+
+!ENTRY com.analog.crosscore.managedbuilder.core 4 0 2026-09-17 08:46:41.275
+!MESSAGE Unexpected exception
+!STACK 0
+java.io.IOException: Cannot run program "C:\Analog Devices\CrossCore Embedded Studio 2.9.3\cc21k": CreateProcess error=4551, 应用程序控制策略已阻止此文件。
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1048)
+	at com.analog.crosscore.managedbuilder.core.scanner.InfoScanner.scan(InfoScanner.java:45)
+	at com.analog.crosscore.managedbuilder.core.scanner.CompilerInfoProvider.invokeProvider(CompilerInfoProvider.java:105)
+	at com.analog.crosscore.managedbuilder.core.scanner.CrossCoreBuiltinSpecsDetector.getSettingEntries(CrossCoreBuiltinSpecsDetector.java:49)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer$LanguageSettingsWorkspaceProvider.getSettingEntries(LanguageSettingsProvidersSerializer.java:180)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesPooled(LanguageSettingsProvidersSerializer.java:1421)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesUpResourceTree(LanguageSettingsProvidersSerializer.java:1449)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesByKind(LanguageSettingsProvidersSerializer.java:1508)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesByKind(LanguageSettingsProvidersSerializer.java:1550)
+	at org.eclipse.cdt.core.settings.model.util.PathEntryTranslator.collectResourceDataEntries(PathEntryTranslator.java:2064)
+	at org.eclipse.cdt.core.settings.model.util.PathEntryTranslator.access$11(PathEntryTranslator.java:2037)
+	at org.eclipse.cdt.core.settings.model.util.PathEntryTranslator$1.visit(PathEntryTranslator.java:2025)
+	at org.eclipse.cdt.core.settings.model.util.PathSettingsContainer.doAccept(PathSettingsContainer.java:519)
+	at org.eclipse.cdt.core.settings.model.util.PathSettingsContainer.accept(PathSettingsContainer.java:515)
+	at org.eclipse.cdt.core.settings.model.util.PathEntryTranslator.collectEntries(PathEntryTranslator.java:2017)
+	at org.eclipse.cdt.internal.core.settings.model.ConfigBasedPathEntryStore.getEntries(ConfigBasedPathEntryStore.java:237)
+	at org.eclipse.cdt.internal.core.settings.model.ConfigBasedPathEntryStore.handleEvent(ConfigBasedPathEntryStore.java:198)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.notifyListeners(CProjectDescriptionManager.java:2180)
+	at org.eclipse.cdt.internal.core.settings.model.SetCProjectDescriptionOperation.executeOperation(SetCProjectDescriptionOperation.java:140)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.execute(CModelOperation.java:341)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.run(CModelOperation.java:607)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2240)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2267)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(CModelOperation.java:638)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCProjectDescriptionStorage.setProjectDescription(AbstractCProjectDescriptionStorage.java:203)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionStorageManager.setProjectDescription(CProjectDescriptionStorageManager.java:149)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(CProjectDescriptionManager.java:853)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.setProjectDescription(CProjectDescriptionManager.java:814)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$6.run(CProjectDescriptionManager.java:548)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$5.run(CProjectDescriptionManager.java:505)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2240)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.runAtomic(CProjectDescriptionManager.java:501)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager.access$4(CProjectDescriptionManager.java:499)
+	at org.eclipse.cdt.internal.core.settings.model.CProjectDescriptionManager$4.run(CProjectDescriptionManager.java:482)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+Caused by: java.io.IOException: CreateProcess error=4551, 应用程序控制策略已阻止此文件。
+	at java.lang.ProcessImpl.create(Native Method)
+	at java.lang.ProcessImpl.<init>(ProcessImpl.java:386)
+	at java.lang.ProcessImpl.start(ProcessImpl.java:137)
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1029)
+	... 34 more
+
+!ENTRY com.analog.crosscore.managedbuilder.core 4 0 2026-09-17 08:46:41.653
+!MESSAGE Unexpected exception
+!STACK 0
+java.io.IOException: Cannot run program "C:\Analog Devices\CrossCore Embedded Studio 2.9.3\cc21k": CreateProcess error=4551, 应用程序控制策略已阻止此文件。
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1048)
+	at com.analog.crosscore.managedbuilder.core.scanner.InfoScanner.scan(InfoScanner.java:45)
+	at com.analog.crosscore.managedbuilder.core.scanner.CompilerInfoProvider.invokeProvider(CompilerInfoProvider.java:105)
+	at com.analog.crosscore.managedbuilder.core.scanner.CrossCoreBuiltinSpecsDetector.getSettingEntries(CrossCoreBuiltinSpecsDetector.java:49)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer$LanguageSettingsWorkspaceProvider.getSettingEntries(LanguageSettingsProvidersSerializer.java:180)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesPooled(LanguageSettingsProvidersSerializer.java:1421)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesUpResourceTree(LanguageSettingsProvidersSerializer.java:1449)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesByKind(LanguageSettingsProvidersSerializer.java:1508)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesByKind(LanguageSettingsProvidersSerializer.java:1550)
+	at org.eclipse.cdt.core.settings.model.util.PathEntryTranslator.collectResourceDataEntries(PathEntryTranslator.java:2064)
+	at org.eclipse.cdt.core.settings.model.util.PathEntryTranslator.access$11(PathEntryTranslator.java:2037)
+	at org.eclipse.cdt.core.settings.model.util.PathEntryTranslator$1.visit(PathEntryTranslator.java:2025)
+	at org.eclipse.cdt.core.settings.model.util.PathSettingsContainer.doAccept(PathSettingsContainer.java:519)
+	at org.eclipse.cdt.core.settings.model.util.PathSettingsContainer.accept(PathSettingsContainer.java:515)
+	at org.eclipse.cdt.core.settings.model.util.PathEntryTranslator.collectEntries(PathEntryTranslator.java:2017)
+	at org.eclipse.cdt.internal.core.settings.model.ConfigBasedPathEntryStore.getEntries(ConfigBasedPathEntryStore.java:237)
+	at org.eclipse.cdt.internal.core.settings.model.ConfigBasedPathEntryStore.getRawPathEntries(ConfigBasedPathEntryStore.java:118)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreProxy.getRawPathEntries(PathEntryStoreProxy.java:97)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getRawPathEntries(PathEntryManager.java:669)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:558)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:531)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:515)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreChangedOperation.executeOperation(PathEntryStoreChangedOperation.java:41)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.execute(CModelOperation.java:341)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.run(CModelOperation.java:607)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(CModelOperation.java:635)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.pathEntryStoreChanged(PathEntryManager.java:1361)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreProxy.notifyListeners(PathEntryStoreProxy.java:63)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreProxy.fireContentChangedEvent(PathEntryStoreProxy.java:56)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreProxy.postProcessProviderChange(PathEntryStoreProxy.java:141)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCExtensionProxy.checkUpdateProvider(AbstractCExtensionProxy.java:121)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCExtensionProxy.providerRequested(AbstractCExtensionProxy.java:38)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreProxy.getRawPathEntries(PathEntryStoreProxy.java:96)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getRawPathEntries(PathEntryManager.java:669)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:558)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:531)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:515)
+	at org.eclipse.cdt.core.model.CoreModel.getResolvedPathEntries(CoreModel.java:947)
+	at org.eclipse.cdt.internal.core.model.CProject.getResolvedPathEntries(CProject.java:400)
+	at org.eclipse.cdt.internal.core.model.CProject.getOutputEntries(CProject.java:509)
+	at org.eclipse.cdt.internal.core.model.CProject.isOnOutputEntry(CProject.java:565)
+	at org.eclipse.cdt.internal.core.model.CModelManager.create(CModelManager.java:361)
+	at org.eclipse.cdt.internal.core.model.CModelManager.create(CModelManager.java:268)
+	at org.eclipse.cdt.internal.core.model.DeltaProcessor.createElement(DeltaProcessor.java:87)
+	at org.eclipse.cdt.internal.core.model.DeltaProcessor.traverseDelta(DeltaProcessor.java:453)
+	at org.eclipse.cdt.internal.core.model.DeltaProcessor.traverseDelta(DeltaProcessor.java:471)
+	at org.eclipse.cdt.internal.core.model.DeltaProcessor.traverseDelta(DeltaProcessor.java:471)
+	at org.eclipse.cdt.internal.core.model.DeltaProcessor.processResourceDelta(DeltaProcessor.java:433)
+	at org.eclipse.cdt.internal.core.model.CModelManager.resourceChanged(CModelManager.java:922)
+	at org.eclipse.core.internal.events.NotificationManager$1.run(NotificationManager.java:299)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.NotificationManager.notify(NotificationManager.java:289)
+	at org.eclipse.core.internal.events.NotificationManager.broadcastChanges(NotificationManager.java:152)
+	at org.eclipse.core.internal.resources.Workspace.broadcastPostChange(Workspace.java:374)
+	at org.eclipse.core.internal.resources.Workspace.endOperation(Workspace.java:1469)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:46)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+Caused by: java.io.IOException: CreateProcess error=4551, 应用程序控制策略已阻止此文件。
+	at java.lang.ProcessImpl.create(Native Method)
+	at java.lang.ProcessImpl.<init>(ProcessImpl.java:386)
+	at java.lang.ProcessImpl.start(ProcessImpl.java:137)
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1029)
+	... 56 more
+
+!ENTRY com.analog.crosscore.managedbuilder.core 4 0 2026-09-17 08:46:42.036
+!MESSAGE Unexpected exception
+!STACK 0
+java.io.IOException: Cannot run program "C:\Analog Devices\CrossCore Embedded Studio 2.9.3\cc21k": CreateProcess error=4551, 应用程序控制策略已阻止此文件。
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1048)
+	at com.analog.crosscore.managedbuilder.core.scanner.InfoScanner.scan(InfoScanner.java:45)
+	at com.analog.crosscore.managedbuilder.core.scanner.CompilerInfoProvider.invokeProvider(CompilerInfoProvider.java:105)
+	at com.analog.crosscore.managedbuilder.core.scanner.CrossCoreBuiltinSpecsDetector.getSettingEntries(CrossCoreBuiltinSpecsDetector.java:49)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer$LanguageSettingsWorkspaceProvider.getSettingEntries(LanguageSettingsProvidersSerializer.java:180)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesPooled(LanguageSettingsProvidersSerializer.java:1421)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesUpResourceTree(LanguageSettingsProvidersSerializer.java:1449)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesByKind(LanguageSettingsProvidersSerializer.java:1508)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesByKind(LanguageSettingsProvidersSerializer.java:1550)
+	at org.eclipse.cdt.core.settings.model.util.PathEntryTranslator.collectResourceDataEntries(PathEntryTranslator.java:2064)
+	at org.eclipse.cdt.core.settings.model.util.PathEntryTranslator.access$11(PathEntryTranslator.java:2037)
+	at org.eclipse.cdt.core.settings.model.util.PathEntryTranslator$1.visit(PathEntryTranslator.java:2025)
+	at org.eclipse.cdt.core.settings.model.util.PathSettingsContainer.doAccept(PathSettingsContainer.java:519)
+	at org.eclipse.cdt.core.settings.model.util.PathSettingsContainer.accept(PathSettingsContainer.java:515)
+	at org.eclipse.cdt.core.settings.model.util.PathEntryTranslator.collectEntries(PathEntryTranslator.java:2017)
+	at org.eclipse.cdt.internal.core.settings.model.ConfigBasedPathEntryStore.getEntries(ConfigBasedPathEntryStore.java:237)
+	at org.eclipse.cdt.internal.core.settings.model.ConfigBasedPathEntryStore.getRawPathEntries(ConfigBasedPathEntryStore.java:118)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreProxy.getRawPathEntries(PathEntryStoreProxy.java:97)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getRawPathEntries(PathEntryManager.java:669)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:558)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:531)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:515)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreChangedOperation.executeOperation(PathEntryStoreChangedOperation.java:41)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.execute(CModelOperation.java:341)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.run(CModelOperation.java:607)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(CModelOperation.java:635)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.pathEntryStoreChanged(PathEntryManager.java:1361)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreProxy.notifyListeners(PathEntryStoreProxy.java:63)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreProxy.fireContentChangedEvent(PathEntryStoreProxy.java:56)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreProxy.postProcessProviderChange(PathEntryStoreProxy.java:141)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCExtensionProxy.checkUpdateProvider(AbstractCExtensionProxy.java:121)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCExtensionProxy.providerRequested(AbstractCExtensionProxy.java:38)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreProxy.getRawPathEntries(PathEntryStoreProxy.java:96)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getRawPathEntries(PathEntryManager.java:669)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:558)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:531)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:515)
+	at org.eclipse.cdt.core.model.CoreModel.getResolvedPathEntries(CoreModel.java:947)
+	at org.eclipse.cdt.internal.core.model.CProject.getResolvedPathEntries(CProject.java:400)
+	at org.eclipse.cdt.internal.core.model.CProject.getOutputEntries(CProject.java:509)
+	at org.eclipse.cdt.internal.core.model.CProject.isOnOutputEntry(CProject.java:565)
+	at org.eclipse.cdt.internal.core.model.CModelManager.create(CModelManager.java:361)
+	at org.eclipse.cdt.internal.core.model.CModelManager.create(CModelManager.java:268)
+	at org.eclipse.cdt.internal.core.model.DeltaProcessor.createElement(DeltaProcessor.java:87)
+	at org.eclipse.cdt.internal.core.model.DeltaProcessor.traverseDelta(DeltaProcessor.java:453)
+	at org.eclipse.cdt.internal.core.model.DeltaProcessor.traverseDelta(DeltaProcessor.java:471)
+	at org.eclipse.cdt.internal.core.model.DeltaProcessor.traverseDelta(DeltaProcessor.java:471)
+	at org.eclipse.cdt.internal.core.model.DeltaProcessor.processResourceDelta(DeltaProcessor.java:433)
+	at org.eclipse.cdt.internal.core.model.CModelManager.resourceChanged(CModelManager.java:922)
+	at org.eclipse.core.internal.events.NotificationManager$1.run(NotificationManager.java:299)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.NotificationManager.notify(NotificationManager.java:289)
+	at org.eclipse.core.internal.events.NotificationManager.broadcastChanges(NotificationManager.java:152)
+	at org.eclipse.core.internal.resources.Workspace.broadcastPostChange(Workspace.java:374)
+	at org.eclipse.core.internal.resources.Workspace.endOperation(Workspace.java:1469)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:46)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+Caused by: java.io.IOException: CreateProcess error=4551, 应用程序控制策略已阻止此文件。
+	at java.lang.ProcessImpl.create(Native Method)
+	at java.lang.ProcessImpl.<init>(ProcessImpl.java:386)
+	at java.lang.ProcessImpl.start(ProcessImpl.java:137)
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1029)
+	... 56 more
+
+!ENTRY com.analog.crosscore.managedbuilder.core 4 0 2026-09-17 08:46:42.419
+!MESSAGE Unexpected exception
+!STACK 0
+java.io.IOException: Cannot run program "C:\Analog Devices\CrossCore Embedded Studio 2.9.3\cc21k": CreateProcess error=4551, 应用程序控制策略已阻止此文件。
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1048)
+	at com.analog.crosscore.managedbuilder.core.scanner.InfoScanner.scan(InfoScanner.java:45)
+	at com.analog.crosscore.managedbuilder.core.scanner.CompilerInfoProvider.invokeProvider(CompilerInfoProvider.java:105)
+	at com.analog.crosscore.managedbuilder.core.scanner.CrossCoreBuiltinSpecsDetector.getSettingEntries(CrossCoreBuiltinSpecsDetector.java:49)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer$LanguageSettingsWorkspaceProvider.getSettingEntries(LanguageSettingsProvidersSerializer.java:180)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesPooled(LanguageSettingsProvidersSerializer.java:1421)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesUpResourceTree(LanguageSettingsProvidersSerializer.java:1449)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesByKind(LanguageSettingsProvidersSerializer.java:1508)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesByKind(LanguageSettingsProvidersSerializer.java:1550)
+	at org.eclipse.cdt.core.settings.model.util.PathEntryTranslator.collectResourceDataEntries(PathEntryTranslator.java:2064)
+	at org.eclipse.cdt.core.settings.model.util.PathEntryTranslator.access$11(PathEntryTranslator.java:2037)
+	at org.eclipse.cdt.core.settings.model.util.PathEntryTranslator$1.visit(PathEntryTranslator.java:2025)
+	at org.eclipse.cdt.core.settings.model.util.PathSettingsContainer.doAccept(PathSettingsContainer.java:519)
+	at org.eclipse.cdt.core.settings.model.util.PathSettingsContainer.accept(PathSettingsContainer.java:515)
+	at org.eclipse.cdt.core.settings.model.util.PathEntryTranslator.collectEntries(PathEntryTranslator.java:2017)
+	at org.eclipse.cdt.internal.core.settings.model.ConfigBasedPathEntryStore.getEntries(ConfigBasedPathEntryStore.java:237)
+	at org.eclipse.cdt.internal.core.settings.model.ConfigBasedPathEntryStore.getRawPathEntries(ConfigBasedPathEntryStore.java:118)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreProxy.getRawPathEntries(PathEntryStoreProxy.java:97)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getRawPathEntries(PathEntryManager.java:669)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:558)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:531)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:515)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreChangedOperation.executeOperation(PathEntryStoreChangedOperation.java:41)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.execute(CModelOperation.java:341)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.run(CModelOperation.java:607)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(CModelOperation.java:635)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.pathEntryStoreChanged(PathEntryManager.java:1361)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreProxy.notifyListeners(PathEntryStoreProxy.java:63)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreProxy.fireContentChangedEvent(PathEntryStoreProxy.java:56)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreProxy.postProcessProviderChange(PathEntryStoreProxy.java:141)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCExtensionProxy.checkUpdateProvider(AbstractCExtensionProxy.java:121)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCExtensionProxy.providerRequested(AbstractCExtensionProxy.java:38)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreProxy.getRawPathEntries(PathEntryStoreProxy.java:96)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getRawPathEntries(PathEntryManager.java:669)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:558)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:531)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:515)
+	at org.eclipse.cdt.core.model.CoreModel.getResolvedPathEntries(CoreModel.java:947)
+	at org.eclipse.cdt.internal.core.model.CProject.getResolvedPathEntries(CProject.java:400)
+	at org.eclipse.cdt.internal.core.model.CProject.getOutputEntries(CProject.java:509)
+	at org.eclipse.cdt.internal.core.model.CProject.isOnOutputEntry(CProject.java:565)
+	at org.eclipse.cdt.internal.core.model.CModelManager.create(CModelManager.java:361)
+	at org.eclipse.cdt.internal.core.model.CModelManager.create(CModelManager.java:268)
+	at org.eclipse.cdt.internal.core.model.DeltaProcessor.createElement(DeltaProcessor.java:87)
+	at org.eclipse.cdt.internal.core.model.DeltaProcessor.traverseDelta(DeltaProcessor.java:453)
+	at org.eclipse.cdt.internal.core.model.DeltaProcessor.traverseDelta(DeltaProcessor.java:471)
+	at org.eclipse.cdt.internal.core.model.DeltaProcessor.traverseDelta(DeltaProcessor.java:471)
+	at org.eclipse.cdt.internal.core.model.DeltaProcessor.processResourceDelta(DeltaProcessor.java:433)
+	at org.eclipse.cdt.internal.core.model.CModelManager.resourceChanged(CModelManager.java:922)
+	at org.eclipse.core.internal.events.NotificationManager$1.run(NotificationManager.java:299)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.NotificationManager.notify(NotificationManager.java:289)
+	at org.eclipse.core.internal.events.NotificationManager.broadcastChanges(NotificationManager.java:152)
+	at org.eclipse.core.internal.resources.Workspace.broadcastPostChange(Workspace.java:374)
+	at org.eclipse.core.internal.resources.Workspace.endOperation(Workspace.java:1469)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:46)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+Caused by: java.io.IOException: CreateProcess error=4551, 应用程序控制策略已阻止此文件。
+	at java.lang.ProcessImpl.create(Native Method)
+	at java.lang.ProcessImpl.<init>(ProcessImpl.java:386)
+	at java.lang.ProcessImpl.start(ProcessImpl.java:137)
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1029)
+	... 56 more
+
+!ENTRY com.analog.crosscore.managedbuilder.core 4 0 2026-09-17 08:46:42.749
+!MESSAGE Unexpected exception
+!STACK 0
+java.io.IOException: Cannot run program "C:\Analog Devices\CrossCore Embedded Studio 2.9.3\cc21k": CreateProcess error=4551, 应用程序控制策略已阻止此文件。
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1048)
+	at com.analog.crosscore.managedbuilder.core.scanner.InfoScanner.scan(InfoScanner.java:45)
+	at com.analog.crosscore.managedbuilder.core.scanner.CompilerInfoProvider.invokeProvider(CompilerInfoProvider.java:105)
+	at com.analog.crosscore.managedbuilder.core.scanner.CrossCoreBuiltinSpecsDetector.getSettingEntries(CrossCoreBuiltinSpecsDetector.java:49)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer$LanguageSettingsWorkspaceProvider.getSettingEntries(LanguageSettingsProvidersSerializer.java:180)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesPooled(LanguageSettingsProvidersSerializer.java:1421)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesUpResourceTree(LanguageSettingsProvidersSerializer.java:1449)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesUpResourceTree(LanguageSettingsProvidersSerializer.java:1456)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesUpResourceTree(LanguageSettingsProvidersSerializer.java:1456)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesByKind(LanguageSettingsProvidersSerializer.java:1508)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSystemSettingEntriesByKind(LanguageSettingsProvidersSerializer.java:1570)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsScannerInfoProvider.getScannerInformation(LanguageSettingsScannerInfoProvider.java:98)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsScannerInfoProvider.getScannerInformation(LanguageSettingsScannerInfoProvider.java:1)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getScannerInfo(TranslationUnit.java:1061)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getAST(TranslationUnit.java:848)
+	at org.eclipse.cdt.internal.core.model.CModelBuilder2.parse(CModelBuilder2.java:147)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.parseUsingCModelBuilder(TranslationUnit.java:678)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.parse(TranslationUnit.java:666)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.buildStructure(TranslationUnit.java:465)
+	at org.eclipse.cdt.internal.core.model.Openable.generateInfos(Openable.java:261)
+	at org.eclipse.cdt.internal.core.model.CElement.openWhenClosed(CElement.java:427)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.makeConsistent(TranslationUnit.java:570)
+	at org.eclipse.cdt.internal.core.model.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:62)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.execute(CModelOperation.java:341)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.run(CModelOperation.java:607)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(CModelOperation.java:635)
+	at org.eclipse.cdt.internal.core.model.WorkingCopy.reconcile(WorkingCopy.java:362)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:78)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:63)
+	at org.eclipse.cdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:87)
+	at org.eclipse.cdt.internal.ui.text.CCompositeReconcilingStrategy.reconcile(CCompositeReconcilingStrategy.java:90)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:73)
+	at org.eclipse.cdt.internal.ui.text.CReconciler.process(CReconciler.java:349)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:207)
+Caused by: java.io.IOException: CreateProcess error=4551, 应用程序控制策略已阻止此文件。
+	at java.lang.ProcessImpl.create(Native Method)
+	at java.lang.ProcessImpl.<init>(ProcessImpl.java:386)
+	at java.lang.ProcessImpl.start(ProcessImpl.java:137)
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1029)
+	... 33 more
+
+!ENTRY com.analog.crosscore.managedbuilder.core 4 0 2026-09-17 08:46:43.073
+!MESSAGE Unexpected exception
+!STACK 0
+java.io.IOException: Cannot run program "C:\Analog Devices\CrossCore Embedded Studio 2.9.3\cc21k": CreateProcess error=4551, 应用程序控制策略已阻止此文件。
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1048)
+	at com.analog.crosscore.managedbuilder.core.scanner.InfoScanner.scan(InfoScanner.java:45)
+	at com.analog.crosscore.managedbuilder.core.scanner.CompilerInfoProvider.invokeProvider(CompilerInfoProvider.java:105)
+	at com.analog.crosscore.managedbuilder.core.scanner.CrossCoreBuiltinSpecsDetector.getSettingEntries(CrossCoreBuiltinSpecsDetector.java:49)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer$LanguageSettingsWorkspaceProvider.getSettingEntries(LanguageSettingsProvidersSerializer.java:180)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesPooled(LanguageSettingsProvidersSerializer.java:1421)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesUpResourceTree(LanguageSettingsProvidersSerializer.java:1449)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesByKind(LanguageSettingsProvidersSerializer.java:1508)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesByKind(LanguageSettingsProvidersSerializer.java:1550)
+	at org.eclipse.cdt.core.settings.model.util.PathEntryTranslator.collectResourceDataEntries(PathEntryTranslator.java:2064)
+	at org.eclipse.cdt.core.settings.model.util.PathEntryTranslator.access$11(PathEntryTranslator.java:2037)
+	at org.eclipse.cdt.core.settings.model.util.PathEntryTranslator$1.visit(PathEntryTranslator.java:2025)
+	at org.eclipse.cdt.core.settings.model.util.PathSettingsContainer.doAccept(PathSettingsContainer.java:519)
+	at org.eclipse.cdt.core.settings.model.util.PathSettingsContainer.accept(PathSettingsContainer.java:515)
+	at org.eclipse.cdt.core.settings.model.util.PathEntryTranslator.collectEntries(PathEntryTranslator.java:2017)
+	at org.eclipse.cdt.internal.core.settings.model.ConfigBasedPathEntryStore.getEntries(ConfigBasedPathEntryStore.java:237)
+	at org.eclipse.cdt.internal.core.settings.model.ConfigBasedPathEntryStore.getRawPathEntries(ConfigBasedPathEntryStore.java:118)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreProxy.getRawPathEntries(PathEntryStoreProxy.java:97)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getRawPathEntries(PathEntryManager.java:669)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:558)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:531)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:515)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreChangedOperation.executeOperation(PathEntryStoreChangedOperation.java:41)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.execute(CModelOperation.java:341)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.run(CModelOperation.java:607)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(CModelOperation.java:635)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.pathEntryStoreChanged(PathEntryManager.java:1361)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreProxy.notifyListeners(PathEntryStoreProxy.java:63)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreProxy.fireContentChangedEvent(PathEntryStoreProxy.java:56)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreProxy.postProcessProviderChange(PathEntryStoreProxy.java:141)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCExtensionProxy.checkUpdateProvider(AbstractCExtensionProxy.java:121)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCExtensionProxy.providerRequested(AbstractCExtensionProxy.java:38)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreProxy.getRawPathEntries(PathEntryStoreProxy.java:96)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getRawPathEntries(PathEntryManager.java:669)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:558)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:531)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:515)
+	at org.eclipse.cdt.core.model.CoreModel.getResolvedPathEntries(CoreModel.java:947)
+	at org.eclipse.cdt.internal.core.model.CProject.getResolvedPathEntries(CProject.java:400)
+	at org.eclipse.cdt.internal.core.model.CProject.getOutputEntries(CProject.java:509)
+	at org.eclipse.cdt.internal.core.model.CProject.isOnOutputEntry(CProject.java:565)
+	at org.eclipse.cdt.internal.core.model.CModelManager.create(CModelManager.java:361)
+	at org.eclipse.cdt.internal.core.model.CModelManager.create(CModelManager.java:268)
+	at org.eclipse.cdt.internal.core.model.DeltaProcessor.createElement(DeltaProcessor.java:87)
+	at org.eclipse.cdt.internal.core.model.DeltaProcessor.traverseDelta(DeltaProcessor.java:453)
+	at org.eclipse.cdt.internal.core.model.DeltaProcessor.traverseDelta(DeltaProcessor.java:471)
+	at org.eclipse.cdt.internal.core.model.DeltaProcessor.traverseDelta(DeltaProcessor.java:471)
+	at org.eclipse.cdt.internal.core.model.DeltaProcessor.processResourceDelta(DeltaProcessor.java:433)
+	at org.eclipse.cdt.internal.core.model.CModelManager.resourceChanged(CModelManager.java:922)
+	at org.eclipse.core.internal.events.NotificationManager$1.run(NotificationManager.java:299)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.NotificationManager.notify(NotificationManager.java:289)
+	at org.eclipse.core.internal.events.NotificationManager.broadcastChanges(NotificationManager.java:152)
+	at org.eclipse.core.internal.resources.Workspace.broadcastPostChange(Workspace.java:374)
+	at org.eclipse.core.internal.resources.Workspace.endOperation(Workspace.java:1469)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:46)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+Caused by: java.io.IOException: CreateProcess error=4551, 应用程序控制策略已阻止此文件。
+	at java.lang.ProcessImpl.create(Native Method)
+	at java.lang.ProcessImpl.<init>(ProcessImpl.java:386)
+	at java.lang.ProcessImpl.start(ProcessImpl.java:137)
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1029)
+	... 56 more
+
+!ENTRY com.analog.crosscore.managedbuilder.core 4 0 2026-09-17 08:46:43.301
+!MESSAGE Unexpected exception
+!STACK 0
+java.io.IOException: Cannot run program "C:\Analog Devices\CrossCore Embedded Studio 2.9.3\cc21k": CreateProcess error=4551, 应用程序控制策略已阻止此文件。
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1048)
+	at com.analog.crosscore.managedbuilder.core.scanner.InfoScanner.scan(InfoScanner.java:45)
+	at com.analog.crosscore.managedbuilder.core.scanner.CompilerInfoProvider.invokeProvider(CompilerInfoProvider.java:105)
+	at com.analog.crosscore.managedbuilder.core.scanner.CrossCoreBuiltinSpecsDetector.getSettingEntries(CrossCoreBuiltinSpecsDetector.java:49)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer$LanguageSettingsWorkspaceProvider.getSettingEntries(LanguageSettingsProvidersSerializer.java:180)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesPooled(LanguageSettingsProvidersSerializer.java:1421)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesUpResourceTree(LanguageSettingsProvidersSerializer.java:1449)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesUpResourceTree(LanguageSettingsProvidersSerializer.java:1456)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesUpResourceTree(LanguageSettingsProvidersSerializer.java:1456)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesByKind(LanguageSettingsProvidersSerializer.java:1508)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getLocalSettingEntriesByKind(LanguageSettingsProvidersSerializer.java:1590)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsScannerInfoProvider.getScannerInformation(LanguageSettingsScannerInfoProvider.java:102)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsScannerInfoProvider.getScannerInformation(LanguageSettingsScannerInfoProvider.java:1)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getScannerInfo(TranslationUnit.java:1061)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getAST(TranslationUnit.java:848)
+	at org.eclipse.cdt.internal.core.model.CModelBuilder2.parse(CModelBuilder2.java:147)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.parseUsingCModelBuilder(TranslationUnit.java:678)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.parse(TranslationUnit.java:666)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.buildStructure(TranslationUnit.java:465)
+	at org.eclipse.cdt.internal.core.model.Openable.generateInfos(Openable.java:261)
+	at org.eclipse.cdt.internal.core.model.CElement.openWhenClosed(CElement.java:427)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.makeConsistent(TranslationUnit.java:570)
+	at org.eclipse.cdt.internal.core.model.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:62)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.execute(CModelOperation.java:341)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.run(CModelOperation.java:607)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(CModelOperation.java:635)
+	at org.eclipse.cdt.internal.core.model.WorkingCopy.reconcile(WorkingCopy.java:362)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:78)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:63)
+	at org.eclipse.cdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:87)
+	at org.eclipse.cdt.internal.ui.text.CCompositeReconcilingStrategy.reconcile(CCompositeReconcilingStrategy.java:90)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:73)
+	at org.eclipse.cdt.internal.ui.text.CReconciler.process(CReconciler.java:349)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:207)
+Caused by: java.io.IOException: CreateProcess error=4551, 应用程序控制策略已阻止此文件。
+	at java.lang.ProcessImpl.create(Native Method)
+	at java.lang.ProcessImpl.<init>(ProcessImpl.java:386)
+	at java.lang.ProcessImpl.start(ProcessImpl.java:137)
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1029)
+	... 33 more
+
+!ENTRY com.analog.crosscore.managedbuilder.core 4 0 2026-09-17 08:46:43.476
+!MESSAGE Unexpected exception
+!STACK 0
+java.io.IOException: Cannot run program "C:\Analog Devices\CrossCore Embedded Studio 2.9.3\cc21k": CreateProcess error=4551, 应用程序控制策略已阻止此文件。
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1048)
+	at com.analog.crosscore.managedbuilder.core.scanner.InfoScanner.scan(InfoScanner.java:45)
+	at com.analog.crosscore.managedbuilder.core.scanner.CompilerInfoProvider.invokeProvider(CompilerInfoProvider.java:105)
+	at com.analog.crosscore.managedbuilder.core.scanner.CrossCoreBuiltinSpecsDetector.getSettingEntries(CrossCoreBuiltinSpecsDetector.java:49)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer$LanguageSettingsWorkspaceProvider.getSettingEntries(LanguageSettingsProvidersSerializer.java:180)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesPooled(LanguageSettingsProvidersSerializer.java:1421)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesUpResourceTree(LanguageSettingsProvidersSerializer.java:1449)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesByKind(LanguageSettingsProvidersSerializer.java:1508)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesByKind(LanguageSettingsProvidersSerializer.java:1550)
+	at org.eclipse.cdt.core.settings.model.util.PathEntryTranslator.collectResourceDataEntries(PathEntryTranslator.java:2064)
+	at org.eclipse.cdt.core.settings.model.util.PathEntryTranslator.access$11(PathEntryTranslator.java:2037)
+	at org.eclipse.cdt.core.settings.model.util.PathEntryTranslator$1.visit(PathEntryTranslator.java:2025)
+	at org.eclipse.cdt.core.settings.model.util.PathSettingsContainer.doAccept(PathSettingsContainer.java:519)
+	at org.eclipse.cdt.core.settings.model.util.PathSettingsContainer.accept(PathSettingsContainer.java:515)
+	at org.eclipse.cdt.core.settings.model.util.PathEntryTranslator.collectEntries(PathEntryTranslator.java:2017)
+	at org.eclipse.cdt.internal.core.settings.model.ConfigBasedPathEntryStore.getEntries(ConfigBasedPathEntryStore.java:237)
+	at org.eclipse.cdt.internal.core.settings.model.ConfigBasedPathEntryStore.getRawPathEntries(ConfigBasedPathEntryStore.java:118)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreProxy.getRawPathEntries(PathEntryStoreProxy.java:97)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getRawPathEntries(PathEntryManager.java:669)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:558)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:531)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:515)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreChangedOperation.executeOperation(PathEntryStoreChangedOperation.java:41)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.execute(CModelOperation.java:341)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.run(CModelOperation.java:607)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(CModelOperation.java:635)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.pathEntryStoreChanged(PathEntryManager.java:1361)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreProxy.notifyListeners(PathEntryStoreProxy.java:63)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreProxy.fireContentChangedEvent(PathEntryStoreProxy.java:56)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreProxy.postProcessProviderChange(PathEntryStoreProxy.java:141)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCExtensionProxy.checkUpdateProvider(AbstractCExtensionProxy.java:121)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCExtensionProxy.providerRequested(AbstractCExtensionProxy.java:38)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreProxy.getRawPathEntries(PathEntryStoreProxy.java:96)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getRawPathEntries(PathEntryManager.java:669)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:558)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:531)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:515)
+	at org.eclipse.cdt.core.model.CoreModel.getResolvedPathEntries(CoreModel.java:947)
+	at org.eclipse.cdt.internal.core.model.CProject.getResolvedPathEntries(CProject.java:400)
+	at org.eclipse.cdt.internal.core.model.CProject.getOutputEntries(CProject.java:509)
+	at org.eclipse.cdt.internal.core.model.CProject.isOnOutputEntry(CProject.java:565)
+	at org.eclipse.cdt.internal.core.model.CModelManager.create(CModelManager.java:361)
+	at org.eclipse.cdt.internal.core.model.CModelManager.create(CModelManager.java:268)
+	at org.eclipse.cdt.internal.core.model.DeltaProcessor.createElement(DeltaProcessor.java:87)
+	at org.eclipse.cdt.internal.core.model.DeltaProcessor.traverseDelta(DeltaProcessor.java:453)
+	at org.eclipse.cdt.internal.core.model.DeltaProcessor.traverseDelta(DeltaProcessor.java:471)
+	at org.eclipse.cdt.internal.core.model.DeltaProcessor.traverseDelta(DeltaProcessor.java:471)
+	at org.eclipse.cdt.internal.core.model.DeltaProcessor.processResourceDelta(DeltaProcessor.java:433)
+	at org.eclipse.cdt.internal.core.model.CModelManager.resourceChanged(CModelManager.java:922)
+	at org.eclipse.core.internal.events.NotificationManager$1.run(NotificationManager.java:299)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.NotificationManager.notify(NotificationManager.java:289)
+	at org.eclipse.core.internal.events.NotificationManager.broadcastChanges(NotificationManager.java:152)
+	at org.eclipse.core.internal.resources.Workspace.broadcastPostChange(Workspace.java:374)
+	at org.eclipse.core.internal.resources.Workspace.endOperation(Workspace.java:1469)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:46)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+Caused by: java.io.IOException: CreateProcess error=4551, 应用程序控制策略已阻止此文件。
+	at java.lang.ProcessImpl.create(Native Method)
+	at java.lang.ProcessImpl.<init>(ProcessImpl.java:386)
+	at java.lang.ProcessImpl.start(ProcessImpl.java:137)
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1029)
+	... 56 more
+
+!ENTRY com.analog.crosscore.managedbuilder.core 4 0 2026-09-17 08:46:43.654
+!MESSAGE Unexpected exception
+!STACK 0
+java.io.IOException: Cannot run program "C:\Analog Devices\CrossCore Embedded Studio 2.9.3\cc21k": CreateProcess error=4551, 应用程序控制策略已阻止此文件。
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1048)
+	at com.analog.crosscore.managedbuilder.core.scanner.InfoScanner.scan(InfoScanner.java:45)
+	at com.analog.crosscore.managedbuilder.core.scanner.CompilerInfoProvider.invokeProvider(CompilerInfoProvider.java:105)
+	at com.analog.crosscore.managedbuilder.core.scanner.CrossCoreBuiltinSpecsDetector.getSettingEntries(CrossCoreBuiltinSpecsDetector.java:49)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer$LanguageSettingsWorkspaceProvider.getSettingEntries(LanguageSettingsProvidersSerializer.java:180)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesPooled(LanguageSettingsProvidersSerializer.java:1421)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesUpResourceTree(LanguageSettingsProvidersSerializer.java:1449)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesUpResourceTree(LanguageSettingsProvidersSerializer.java:1456)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesUpResourceTree(LanguageSettingsProvidersSerializer.java:1456)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesByKind(LanguageSettingsProvidersSerializer.java:1508)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesByKind(LanguageSettingsProvidersSerializer.java:1550)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsScannerInfoProvider.getScannerInformation(LanguageSettingsScannerInfoProvider.java:106)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsScannerInfoProvider.getScannerInformation(LanguageSettingsScannerInfoProvider.java:1)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getScannerInfo(TranslationUnit.java:1061)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getAST(TranslationUnit.java:848)
+	at org.eclipse.cdt.internal.core.model.CModelBuilder2.parse(CModelBuilder2.java:147)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.parseUsingCModelBuilder(TranslationUnit.java:678)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.parse(TranslationUnit.java:666)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.buildStructure(TranslationUnit.java:465)
+	at org.eclipse.cdt.internal.core.model.Openable.generateInfos(Openable.java:261)
+	at org.eclipse.cdt.internal.core.model.CElement.openWhenClosed(CElement.java:427)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.makeConsistent(TranslationUnit.java:570)
+	at org.eclipse.cdt.internal.core.model.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:62)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.execute(CModelOperation.java:341)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.run(CModelOperation.java:607)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(CModelOperation.java:635)
+	at org.eclipse.cdt.internal.core.model.WorkingCopy.reconcile(WorkingCopy.java:362)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:78)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:63)
+	at org.eclipse.cdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:87)
+	at org.eclipse.cdt.internal.ui.text.CCompositeReconcilingStrategy.reconcile(CCompositeReconcilingStrategy.java:90)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:73)
+	at org.eclipse.cdt.internal.ui.text.CReconciler.process(CReconciler.java:349)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:207)
+Caused by: java.io.IOException: CreateProcess error=4551, 应用程序控制策略已阻止此文件。
+	at java.lang.ProcessImpl.create(Native Method)
+	at java.lang.ProcessImpl.<init>(ProcessImpl.java:386)
+	at java.lang.ProcessImpl.start(ProcessImpl.java:137)
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1029)
+	... 33 more
+
+!ENTRY com.analog.crosscore.managedbuilder.core 4 0 2026-09-17 08:46:43.817
+!MESSAGE Unexpected exception
+!STACK 0
+java.io.IOException: Cannot run program "C:\Analog Devices\CrossCore Embedded Studio 2.9.3\cc21k": CreateProcess error=4551, 应用程序控制策略已阻止此文件。
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1048)
+	at com.analog.crosscore.managedbuilder.core.scanner.InfoScanner.scan(InfoScanner.java:45)
+	at com.analog.crosscore.managedbuilder.core.scanner.CompilerInfoProvider.invokeProvider(CompilerInfoProvider.java:105)
+	at com.analog.crosscore.managedbuilder.core.scanner.CrossCoreBuiltinSpecsDetector.getSettingEntries(CrossCoreBuiltinSpecsDetector.java:49)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer$LanguageSettingsWorkspaceProvider.getSettingEntries(LanguageSettingsProvidersSerializer.java:180)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesPooled(LanguageSettingsProvidersSerializer.java:1421)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesUpResourceTree(LanguageSettingsProvidersSerializer.java:1449)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesByKind(LanguageSettingsProvidersSerializer.java:1508)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesByKind(LanguageSettingsProvidersSerializer.java:1550)
+	at org.eclipse.cdt.core.settings.model.util.PathEntryTranslator.collectResourceDataEntries(PathEntryTranslator.java:2064)
+	at org.eclipse.cdt.core.settings.model.util.PathEntryTranslator.access$11(PathEntryTranslator.java:2037)
+	at org.eclipse.cdt.core.settings.model.util.PathEntryTranslator$1.visit(PathEntryTranslator.java:2025)
+	at org.eclipse.cdt.core.settings.model.util.PathSettingsContainer.doAccept(PathSettingsContainer.java:519)
+	at org.eclipse.cdt.core.settings.model.util.PathSettingsContainer.accept(PathSettingsContainer.java:515)
+	at org.eclipse.cdt.core.settings.model.util.PathEntryTranslator.collectEntries(PathEntryTranslator.java:2017)
+	at org.eclipse.cdt.internal.core.settings.model.ConfigBasedPathEntryStore.getEntries(ConfigBasedPathEntryStore.java:237)
+	at org.eclipse.cdt.internal.core.settings.model.ConfigBasedPathEntryStore.getRawPathEntries(ConfigBasedPathEntryStore.java:118)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreProxy.getRawPathEntries(PathEntryStoreProxy.java:97)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getRawPathEntries(PathEntryManager.java:669)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:558)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:531)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:515)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreChangedOperation.executeOperation(PathEntryStoreChangedOperation.java:41)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.execute(CModelOperation.java:341)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.run(CModelOperation.java:607)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(CModelOperation.java:635)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.pathEntryStoreChanged(PathEntryManager.java:1361)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreProxy.notifyListeners(PathEntryStoreProxy.java:63)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreProxy.fireContentChangedEvent(PathEntryStoreProxy.java:56)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreProxy.postProcessProviderChange(PathEntryStoreProxy.java:141)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCExtensionProxy.checkUpdateProvider(AbstractCExtensionProxy.java:121)
+	at org.eclipse.cdt.internal.core.settings.model.AbstractCExtensionProxy.providerRequested(AbstractCExtensionProxy.java:38)
+	at org.eclipse.cdt.internal.core.model.PathEntryStoreProxy.getRawPathEntries(PathEntryStoreProxy.java:96)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getRawPathEntries(PathEntryManager.java:669)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:558)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:531)
+	at org.eclipse.cdt.internal.core.model.PathEntryManager.getResolvedPathEntries(PathEntryManager.java:515)
+	at org.eclipse.cdt.core.model.CoreModel.getResolvedPathEntries(CoreModel.java:947)
+	at org.eclipse.cdt.internal.core.model.CProject.getResolvedPathEntries(CProject.java:400)
+	at org.eclipse.cdt.internal.core.model.CProject.getOutputEntries(CProject.java:509)
+	at org.eclipse.cdt.internal.core.model.CProject.isOnOutputEntry(CProject.java:565)
+	at org.eclipse.cdt.internal.core.model.CModelManager.create(CModelManager.java:361)
+	at org.eclipse.cdt.internal.core.model.CModelManager.create(CModelManager.java:268)
+	at org.eclipse.cdt.internal.core.model.DeltaProcessor.createElement(DeltaProcessor.java:87)
+	at org.eclipse.cdt.internal.core.model.DeltaProcessor.traverseDelta(DeltaProcessor.java:453)
+	at org.eclipse.cdt.internal.core.model.DeltaProcessor.traverseDelta(DeltaProcessor.java:471)
+	at org.eclipse.cdt.internal.core.model.DeltaProcessor.traverseDelta(DeltaProcessor.java:471)
+	at org.eclipse.cdt.internal.core.model.DeltaProcessor.processResourceDelta(DeltaProcessor.java:433)
+	at org.eclipse.cdt.internal.core.model.CModelManager.resourceChanged(CModelManager.java:922)
+	at org.eclipse.core.internal.events.NotificationManager$1.run(NotificationManager.java:299)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.NotificationManager.notify(NotificationManager.java:289)
+	at org.eclipse.core.internal.events.NotificationManager.broadcastChanges(NotificationManager.java:152)
+	at org.eclipse.core.internal.resources.Workspace.broadcastPostChange(Workspace.java:374)
+	at org.eclipse.core.internal.resources.Workspace.endOperation(Workspace.java:1469)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:46)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+Caused by: java.io.IOException: CreateProcess error=4551, 应用程序控制策略已阻止此文件。
+	at java.lang.ProcessImpl.create(Native Method)
+	at java.lang.ProcessImpl.<init>(ProcessImpl.java:386)
+	at java.lang.ProcessImpl.start(ProcessImpl.java:137)
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1029)
+	... 56 more
+
+!ENTRY com.analog.crosscore.managedbuilder.core 4 0 2026-09-17 08:46:44.001
+!MESSAGE Unexpected exception
+!STACK 0
+java.io.IOException: Cannot run program "C:\Analog Devices\CrossCore Embedded Studio 2.9.3\cc21k": CreateProcess error=4551, 应用程序控制策略已阻止此文件。
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1048)
+	at com.analog.crosscore.managedbuilder.core.scanner.InfoScanner.scan(InfoScanner.java:45)
+	at com.analog.crosscore.managedbuilder.core.scanner.CompilerInfoProvider.invokeProvider(CompilerInfoProvider.java:105)
+	at com.analog.crosscore.managedbuilder.core.scanner.CrossCoreBuiltinSpecsDetector.getSettingEntries(CrossCoreBuiltinSpecsDetector.java:49)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer$LanguageSettingsWorkspaceProvider.getSettingEntries(LanguageSettingsProvidersSerializer.java:180)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesPooled(LanguageSettingsProvidersSerializer.java:1421)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesUpResourceTree(LanguageSettingsProvidersSerializer.java:1449)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesUpResourceTree(LanguageSettingsProvidersSerializer.java:1456)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesUpResourceTree(LanguageSettingsProvidersSerializer.java:1456)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesByKind(LanguageSettingsProvidersSerializer.java:1508)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesByKind(LanguageSettingsProvidersSerializer.java:1550)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsScannerInfoProvider.getScannerInformation(LanguageSettingsScannerInfoProvider.java:110)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsScannerInfoProvider.getScannerInformation(LanguageSettingsScannerInfoProvider.java:1)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getScannerInfo(TranslationUnit.java:1061)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getAST(TranslationUnit.java:848)
+	at org.eclipse.cdt.internal.core.model.CModelBuilder2.parse(CModelBuilder2.java:147)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.parseUsingCModelBuilder(TranslationUnit.java:678)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.parse(TranslationUnit.java:666)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.buildStructure(TranslationUnit.java:465)
+	at org.eclipse.cdt.internal.core.model.Openable.generateInfos(Openable.java:261)
+	at org.eclipse.cdt.internal.core.model.CElement.openWhenClosed(CElement.java:427)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.makeConsistent(TranslationUnit.java:570)
+	at org.eclipse.cdt.internal.core.model.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:62)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.execute(CModelOperation.java:341)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.run(CModelOperation.java:607)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(CModelOperation.java:635)
+	at org.eclipse.cdt.internal.core.model.WorkingCopy.reconcile(WorkingCopy.java:362)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:78)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:63)
+	at org.eclipse.cdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:87)
+	at org.eclipse.cdt.internal.ui.text.CCompositeReconcilingStrategy.reconcile(CCompositeReconcilingStrategy.java:90)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:73)
+	at org.eclipse.cdt.internal.ui.text.CReconciler.process(CReconciler.java:349)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:207)
+Caused by: java.io.IOException: CreateProcess error=4551, 应用程序控制策略已阻止此文件。
+	at java.lang.ProcessImpl.create(Native Method)
+	at java.lang.ProcessImpl.<init>(ProcessImpl.java:386)
+	at java.lang.ProcessImpl.start(ProcessImpl.java:137)
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1029)
+	... 33 more
+
+!ENTRY com.analog.crosscore.managedbuilder.core 4 0 2026-09-17 08:46:44.201
+!MESSAGE Unexpected exception
+!STACK 0
+java.io.IOException: Cannot run program "C:\Analog Devices\CrossCore Embedded Studio 2.9.3\cc21k": CreateProcess error=4551, 应用程序控制策略已阻止此文件。
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1048)
+	at com.analog.crosscore.managedbuilder.core.scanner.InfoScanner.scan(InfoScanner.java:45)
+	at com.analog.crosscore.managedbuilder.core.scanner.CompilerInfoProvider.invokeProvider(CompilerInfoProvider.java:105)
+	at com.analog.crosscore.managedbuilder.core.scanner.CrossCoreBuiltinSpecsDetector.getSettingEntries(CrossCoreBuiltinSpecsDetector.java:49)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer$LanguageSettingsWorkspaceProvider.getSettingEntries(LanguageSettingsProvidersSerializer.java:180)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesPooled(LanguageSettingsProvidersSerializer.java:1421)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesUpResourceTree(LanguageSettingsProvidersSerializer.java:1449)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesUpResourceTree(LanguageSettingsProvidersSerializer.java:1456)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesUpResourceTree(LanguageSettingsProvidersSerializer.java:1456)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesByKind(LanguageSettingsProvidersSerializer.java:1508)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsProvidersSerializer.getSettingEntriesByKind(LanguageSettingsProvidersSerializer.java:1550)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsScannerInfoProvider.getScannerInformation(LanguageSettingsScannerInfoProvider.java:114)
+	at org.eclipse.cdt.internal.core.language.settings.providers.LanguageSettingsScannerInfoProvider.getScannerInformation(LanguageSettingsScannerInfoProvider.java:1)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getScannerInfo(TranslationUnit.java:1061)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.getAST(TranslationUnit.java:848)
+	at org.eclipse.cdt.internal.core.model.CModelBuilder2.parse(CModelBuilder2.java:147)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.parseUsingCModelBuilder(TranslationUnit.java:678)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.parse(TranslationUnit.java:666)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.buildStructure(TranslationUnit.java:465)
+	at org.eclipse.cdt.internal.core.model.Openable.generateInfos(Openable.java:261)
+	at org.eclipse.cdt.internal.core.model.CElement.openWhenClosed(CElement.java:427)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.makeConsistent(TranslationUnit.java:570)
+	at org.eclipse.cdt.internal.core.model.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:62)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.execute(CModelOperation.java:341)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.run(CModelOperation.java:607)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(CModelOperation.java:635)
+	at org.eclipse.cdt.internal.core.model.WorkingCopy.reconcile(WorkingCopy.java:362)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:78)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:63)
+	at org.eclipse.cdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:87)
+	at org.eclipse.cdt.internal.ui.text.CCompositeReconcilingStrategy.reconcile(CCompositeReconcilingStrategy.java:90)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:73)
+	at org.eclipse.cdt.internal.ui.text.CReconciler.process(CReconciler.java:349)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:207)
+Caused by: java.io.IOException: CreateProcess error=4551, 应用程序控制策略已阻止此文件。
+	at java.lang.ProcessImpl.create(Native Method)
+	at java.lang.ProcessImpl.<init>(ProcessImpl.java:386)
+	at java.lang.ProcessImpl.start(ProcessImpl.java:137)
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1029)
+	... 33 more
+!SESSION 2026-09-17 08:49:01.155 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_102
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=zh_CN
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY com.analog.crosscore.core 1 0 2026-09-17 08:49:03.676
+!MESSAGE 2026-09-17 08:49:03, 675 [Thread: main] INFO - CrossCore(R) Embedded Studio 2.9.3.0 w2008111
+
+
+!ENTRY com.analog.crosscore.core 1 0 2026-09-17 08:49:03.677
+!MESSAGE 2026-09-17 08:49:03, 677 [Thread: main] INFO - CCES install path: C:/Analog Devices/CrossCore Embedded Studio 2.9.3/; environment variable CCES_HOME: not set
+
+
+!ENTRY org.eclipse.launchbar.core 2 0 2026-09-17 08:59:34.752
+!MESSAGE Enablement expression is missing for descriptor type org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2026-09-17 08:59:34.757
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY com.analog.crosscore.debug 4 10004 2026-09-17 08:59:38.586
+!MESSAGE [TpsdkServer] Failed to connect to processor.
+
+Error: 0x80048020
+Error Description: Selected emulator not detected
+
+!ENTRY com.analog.crosscore.debug 4 5012 2026-09-17 08:59:38.588
+!MESSAGE Error in launch sequence
+!STACK 1
+org.eclipse.core.runtime.CoreException: [TpsdkServer] Failed to connect to processor.
+
+Error: 0x80048020
+Error Description: Selected emulator not detected
+	at org.eclipse.cdt.dsf.concurrent.Query.get(Query.java:111)
+	at com.analog.crosscore.debug.launch.LaunchDelegate.createSession(LaunchDelegate.java:1251)
+	at com.analog.crosscore.debug.launch.LaunchDelegate.launch(LaunchDelegate.java:755)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+!SUBENTRY 1 com.analog.crosscore.debug 4 10004 2026-09-17 08:59:38.588
+!MESSAGE [TpsdkServer] Failed to connect to processor.
+
+Error: 0x80048020
+Error Description: Selected emulator not detected
+
+!ENTRY com.analog.crosscore.debug 4 10004 2026-09-17 09:05:44.286
+!MESSAGE [TpsdkServer] Failed to connect to processor.
+
+Error: 0x80048020
+Error Description: Selected emulator not detected
+
+!ENTRY com.analog.crosscore.debug 4 5012 2026-09-17 09:05:44.287
+!MESSAGE Error in launch sequence
+!STACK 1
+org.eclipse.core.runtime.CoreException: [TpsdkServer] Failed to connect to processor.
+
+Error: 0x80048020
+Error Description: Selected emulator not detected
+	at org.eclipse.cdt.dsf.concurrent.Query.get(Query.java:111)
+	at com.analog.crosscore.debug.launch.LaunchDelegate.createSession(LaunchDelegate.java:1251)
+	at com.analog.crosscore.debug.launch.LaunchDelegate.launch(LaunchDelegate.java:755)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+!SUBENTRY 1 com.analog.crosscore.debug 4 10004 2026-09-17 09:05:44.287
+!MESSAGE [TpsdkServer] Failed to connect to processor.
+
+Error: 0x80048020
+Error Description: Selected emulator not detected
+
+!ENTRY org.eclipse.core.jobs 2 2 2026-09-17 09:11:37.559
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: com.analog.crosscore.debug.service.CommandControl$CommandSendJob
+
+!ENTRY org.eclipse.core.jobs 2 2 2026-09-17 09:11:37.561
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: com.analog.crosscore.debug.service.CommandControl$CommandSendJob
+!SESSION 2026-09-24 07:15:17.527 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_102
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=zh_CN
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY com.analog.crosscore.core 1 0 2026-09-24 07:15:21.704
+!MESSAGE 2026-09-24 07:15:21, 704 [Thread: main] INFO - CrossCore(R) Embedded Studio 2.9.3.0 w2008111
+
+
+!ENTRY com.analog.crosscore.core 1 0 2026-09-24 07:15:21.704
+!MESSAGE 2026-09-24 07:15:21, 704 [Thread: main] INFO - CCES install path: C:/Analog Devices/CrossCore Embedded Studio 2.9.3/; environment variable CCES_HOME: not set
+
+!SESSION 2026-09-26 17:20:52.747 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_102
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=zh_CN
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY com.analog.crosscore.core 1 0 2026-09-26 17:20:55.130
+!MESSAGE 2026-09-26 17:20:55, 130 [Thread: main] INFO - CrossCore(R) Embedded Studio 2.9.3.0 w2008111
+
+
+!ENTRY com.analog.crosscore.core 1 0 2026-09-26 17:20:55.130
+!MESSAGE 2026-09-26 17:20:55, 130 [Thread: main] INFO - CCES install path: C:/Analog Devices/CrossCore Embedded Studio 2.9.3/; environment variable CCES_HOME: not set
+
+!SESSION 2026-09-27 03:14:28.667 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_102
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=zh_CN
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY com.analog.crosscore.core 1 0 2026-09-27 03:14:31.110
+!MESSAGE 2026-09-27 03:14:31, 109 [Thread: main] INFO - CrossCore(R) Embedded Studio 2.9.3.0 w2008111
+
+
+!ENTRY com.analog.crosscore.core 1 0 2026-09-27 03:14:31.110
+!MESSAGE 2026-09-27 03:14:31, 110 [Thread: main] INFO - CCES install path: C:/Analog Devices/CrossCore Embedded Studio 2.9.3/; environment variable CCES_HOME: not set
+
