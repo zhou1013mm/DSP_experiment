@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+  <title>Readme_adc_dac_playback</title>
+  <style type="text/css">
+    body {font: 12px Arial, Helvetica, Verdana;}
+    table {font: 12px Arial, Helvetica, Verdana;}
+    h1 { font: bold 24px Helvetica; color:#003366; width:100%; border-bottom:1px solid #003366; margin-top:30px; margin-bottom:30px }
+    h2 { font: bold 18px Helvetica; color:#000000; border:0px; margin-top:20px; margin-bottom:20px }
+    h3 { font: bold 14px Helvetica; color:#000000; border:0px; margin-top:20px; margin-bottom:20px }
+    table {tet-align: left; width: 600px }
+    caption {caption-side: bottom;}
+    td {vertical-align: top;}
+    td.heading1 {vertical-align: top; width: 220px; text-align: center; font-weight: bold;}
+    td.heading2 {vertical-align: top; text-align: center; font-weight: bold;}
+    
+  </style></head>
+  <body>
+    <h1>Analog Devices, Inc. CrossCore(R) Embedded Studio Application Example</h1>
+    <h2>ADSP-SC5xx EZ-Kit Board Support Package</h2>
+    <h3>Project Name: adc_dac_playback</h3>
+    <h3>CONTENTS</h3>
+    <ol>
+      <li><a href="#DE">Description</a></li>
+      <li><a href="#PR">Processor</a></li>
+      <li><a href="#OV">Overview</a></li>
+      <li><a href="#HW">Hardware Setup</a></li>
+      <li><a href="#EC">External connections</a></li>
+      <li><a href="#SWITCH">Software switch settings</a></li>
+      <li><a href="#REF">References</a></li>
+    </ol>
+
+    <h3><a name="DE">1. Description<br></a></h3>
+    <p>	This example utilizes the ADAU1979 ADC and the ADAU1962a DAC to operate in one of two modes:
+    <ul><li>Four channel audio playback (default setting).
+    </li></ul> 
+    <ul><li>Four channel analog loopback self test using a 3.0kHz signal.
+    </li></ul> 
+	</p>
+    
+    <h3><a name="PR">2. Processor</a></h3>
+    <ul><li>ADSP-SC573</li></ul>
+
+    <h3><a name="OV">3. Overview</a></h3>
+    <p> This example demonstrates the usage of the ADAU1979 ADC and ADAU1962a DAC. Both the ADC and DAC
+    	are configured to pass 4 channel audio, at a sampling rate of 48kHz, to one/two SPORT devices.<br><br>
+    	The mode of operation of this example (Playback or Analog Loopback) can be configure in adc_dac_playback.h header file.
+    	The #define PLAYBACK is defined by default and builds the example for playback mode.  If this #define is commented
+    	out the example builds for analog loopback mode. For playback mode there is an additional #define TDM_MODE that
+    	determines whether the playback operates in I2S (stereo mode) or multichannel (TDM mode).  By default, playback is I2S and
+    	consequently the define is commented out as such //#define TDM_MODE.  The #define CALLBACK_COUNT determines the playback duration of the example. 
+      	By default it is set to run for more than 10 seconds.
+    <ul><li>
+    	Playback<br>
+		Two modes for playback are supported:
+		1. Stereo Mode: By Default this audio example runs in I2S mode. Connect an audio source to IP1 and IP2 of the four Audio input connectors on J3. Play audio can be heard on OP1 and OP2 of the four (extreme left) Audio output connectors on J11. 
+		   Connect an audio source to IP3 and IP4 of the four Audio input connectors on J3. Play audio can be heard  on OP3 and OP4 of the four (extreme left) Audio output connectors on J11.
+		2. TDM Mode: This audio example supports TDM4 and TDM8 modes for Playback. 
+		   To run this audio example in TDM4 mode, uncomment "TDM_MODE" and "TDM4" macros in adc_dac_playback.h file and connect an audio source to IP1 and IP2 of the four Audio input connectors on J3.
+		   Play audio can be heard on OP1, OP2, OP3 and OP4 of the four (extreme left) Audio output connectors on J11.
+		   To run this audio example in TDM8 mode, comment the TDM4 macro back and uncomment "TDM8" macro in adc_dac_playback.h file, update the macro "NUM_CHANNELS" to "8".
+           In file adc_dac_playback.c, change the second parameter (ADI_ADAU1979_SERIAL_MODE) to (ADI_ADAU1979_SERIAL_MODE_TDM8) in  API call adi_adau1979_Open() in function Adau1979Init(). 
+           and change the second parameter (ADI_ADAU1962A_SERIAL_MODE) to (ADI_ADAU1962A_SERIAL_MODE_TDM8) in  API call adi_adau1962a_Open() in function Adau1962aInit().
+		   Connect an audio source to IP1 and IP2 of the four Audio input connectors on J6 and play audio can be heard on all 8 ouput channels.
+    </ul></li> 	
+    <ul><li> 	
+     	Analog Loopback<br>
+      	In this mode the example performs an external analog loopback self test on a 3.0 kHz internally generated signal. 
+      	External loopbacks from all four inputs to all four outputs are required for this example to pass and produce a console 
+      	output "All Done". A 3.0kHz with a sampling rate of 48kHz signal is generated from SPORT2b.	It passes through the ASRC 
+      	that converts the signal to 96kHz and on to the DAC.  The signal is externally looped back to the ADC which passes it 
+      	on to the ASRC for conversion back to SPORT2a at 48kHz.  An autocorrelation is then performed on	the received audio 
+      	to determine that it is a 3.0kHz sine wave. 
+    </ul></li> 		
+    </p>
+
+    <h3><a name="HW">4. Hardware Setup</a></h3>
+    <p> The following SRU configuration is used in this example.
+    <br>
+
+       <pre>
+	               _____________                        _____________
+        	      |             |                      |             |
+	 Audio Ip1--->|       DAI012|---Clk--------------->|             |
+	 Audio Ip2--->|       DAI020|---Fs---------------->|             |
+	              |  AD1979     |                      |    SPORT    |
+	              |       DAI006|---Data0------------->|     2a      |
+	 Audio Ip3--->|       DAI007|---Data1------------->|             |
+	 Audio Ip4--->|  fs 48k     |                      |             |
+	              |_____________|                      |_____________|
+	                    |					  |
+	   DAI003           |                                  mem copy
+	   25.476MHz --->---x                                     |
+	                    |                                     V
+	               _____|_______                        ______|______
+	              |             |                      |             |
+	 Audio Op1<---|       DAI002|---Clk--------------->|             |
+	 Audio Op2<---|       DAI004|---Fs---------------->|             |
+	              |   AD1962a   |                      |    SPORT    |
+	              |       DAI001|<--Data0--------------|     2b      |
+	 Audio Op3<---|       DAI005|<--Data1--------------|             |
+	 Audio Op4<---|   fs 48k    |                      |             |
+        	      |_____________|                      |_____________|
+
+
+	        J11 audio output    J3 audio in/out
+
+        	 OP1 OP3             IP1 IP3
+		  O   O   O   O       O   O
+
+	          O   O   O   O       O   O
+	         OP2 OP4             IP2 IP4
+
+       </pre>
+    </p>
+    
+    <h3><a name="EC">5. External connections</a></h3>
+    <p> 
+    <ul><li>
+    	For Playback mode <br> 
+		Connect an audio source to any of the four Audio input connectors on J3. Play audio can be heard 
+      	on the corresponding Audio output port of the four (extreme left) connectors on J11.
+    </ul></li> 	
+    <ul><li> 	
+     	For Analog Loopback<br>
+      	Connect loopback cables all four audio inputs on the connector J3 to the four (extreme left) Audio output 
+      	connectors on J11 as shown.
+    </ul></li> 
+    </p>
+
+    <h3><a name="SWITCH">6. Software switch settings</a></h3>
+    <p>See SoftConfig_SC573.c for more information.</p>
+
+    <h3><a name="REF">7. References</a></h3>
+    <ul>
+      <li>ADSP-SC573 Hardware Reference Manual</li>
+      <li>ADSP-SC573 EZ-Board Schematic</li>
+    </ul>
+    
+    <br>
+    <br>
+
+</body></html>

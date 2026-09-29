@@ -1,18 +1,112 @@
-09:05:25 **** Incremental Build of configuration Debug for project ADC_DAC_Playback_SC589_SHARC_Core1 ****
+16:56:17 **** Build of configuration Debug for project ADC_DAC_Playback_SC589_SHARC_Core1 ****
+make all 
+'Building file: ../system/startup_ldf/app_IVT.s'
+'Invoking: CrossCore SHARC Assembler'
+easm21k -file-attr ProjectName="ADC_DAC_Playback_SC589_SHARC_Core1" -proc ADSP-SC589 -si-revision any -g -DCORE1 -D_DEBUG @includes-0daccf9c4985038a502c4fb6b30563ac.txt -absolute-path-dependencies -swc -char-size-8 -gnu-style-dependencies -MM -Mo "system/startup_ldf/app_IVT.d" -o "system/startup_ldf/app_IVT.doj" "../system/startup_ldf/app_IVT.s"
+'Finished building: ../system/startup_ldf/app_IVT.s'
+' '
+'Building file: ../system/startup_ldf/app_heaptab.c'
+'Invoking: CrossCore SHARC C/C++ Compiler'
+cc21k -c -file-attr ProjectName="ADC_DAC_Playback_SC589_SHARC_Core1" -proc ADSP-SC589 -flags-compiler --no_wrap_diagnostics -si-revision any -g -DCORE1 -D_DEBUG -DADI_DEBUG @includes-05ecec1be144181c5b6cc87190875abb.txt -structs-do-not-overlap -no-const-strings -no-multiline -warn-protos -double-size-32 -char-size-8 -swc -absolute-path-dependencies -gnu-style-dependencies -MD -Mo "system/startup_ldf/app_heaptab.d" -o "system/startup_ldf/app_heaptab.doj" "../system/startup_ldf/app_heaptab.c"
+'Finished building: ../system/startup_ldf/app_heaptab.c'
+' '
+'Building file: ../system/startup_ldf/app_startup.s'
+'Invoking: CrossCore SHARC Assembler'
+easm21k -file-attr ProjectName="ADC_DAC_Playback_SC589_SHARC_Core1" -proc ADSP-SC589 -si-revision any -g -DCORE1 -D_DEBUG @includes-0daccf9c4985038a502c4fb6b30563ac.txt -absolute-path-dependencies -swc -char-size-8 -gnu-style-dependencies -MM -Mo "system/startup_ldf/app_startup.d" -o "system/startup_ldf/app_startup.doj" "../system/startup_ldf/app_startup.s"
+'Finished building: ../system/startup_ldf/app_startup.s'
+' '
+'Building file: C:/Analog Devices/ADSP-SC5xx_EZ-KIT_Lite-Rel2.0.2/ADSP-SC5xx_EZ-KIT/src/drivers/dac/adau1962a/adi_adau1962a.c'
+'Invoking: CrossCore SHARC C/C++ Compiler'
+cc21k -c -file-attr ProjectName="ADC_DAC_Playback_SC589_SHARC_Core1" -proc ADSP-SC589 -flags-compiler --no_wrap_diagnostics -si-revision any -g -DCORE1 -D_DEBUG -DADI_DEBUG @includes-05ecec1be144181c5b6cc87190875abb.txt -structs-do-not-overlap -no-const-strings -no-multiline -warn-protos -double-size-32 -char-size-8 -swc -absolute-path-dependencies -gnu-style-dependencies -MD -Mo "system/SC5xx_EZ-Kit/drivers/dac/adau1962a/adi_adau1962a.d" -o "system/SC5xx_EZ-Kit/drivers/dac/adau1962a/adi_adau1962a.doj" "C:/Analog Devices/ADSP-SC5xx_EZ-KIT_Lite-Rel2.0.2/ADSP-SC5xx_EZ-KIT/src/drivers/dac/adau1962a/adi_adau1962a.c"
+'Finished building: C:/Analog Devices/ADSP-SC5xx_EZ-KIT_Lite-Rel2.0.2/ADSP-SC5xx_EZ-KIT/src/drivers/dac/adau1962a/adi_adau1962a.c'
+' '
+'Building file: C:/Analog Devices/ADSP-SC5xx_EZ-KIT_Lite-Rel2.0.2/ADSP-SC5xx_EZ-KIT/src/drivers/adc/adau1979/adi_adau1979.c'
+'Invoking: CrossCore SHARC C/C++ Compiler'
+cc21k -c -file-attr ProjectName="ADC_DAC_Playback_SC589_SHARC_Core1" -proc ADSP-SC589 -flags-compiler --no_wrap_diagnostics -si-revision any -g -DCORE1 -D_DEBUG -DADI_DEBUG @includes-05ecec1be144181c5b6cc87190875abb.txt -structs-do-not-overlap -no-const-strings -no-multiline -warn-protos -double-size-32 -char-size-8 -swc -absolute-path-dependencies -gnu-style-dependencies -MD -Mo "system/SC5xx_EZ-Kit/drivers/adc/adau1979/adi_adau1979.d" -o "system/SC5xx_EZ-Kit/drivers/adc/adau1979/adi_adau1979.doj" "C:/Analog Devices/ADSP-SC5xx_EZ-KIT_Lite-Rel2.0.2/ADSP-SC5xx_EZ-KIT/src/drivers/adc/adau1979/adi_adau1979.c"
+'Finished building: C:/Analog Devices/ADSP-SC5xx_EZ-KIT_Lite-Rel2.0.2/ADSP-SC5xx_EZ-KIT/src/drivers/adc/adau1979/adi_adau1979.c'
+' '
+'Building file: ../system/adi_initialize.c'
+'Invoking: CrossCore SHARC C/C++ Compiler'
+cc21k -c -file-attr ProjectName="ADC_DAC_Playback_SC589_SHARC_Core1" -proc ADSP-SC589 -flags-compiler --no_wrap_diagnostics -si-revision any -g -DCORE1 -D_DEBUG -DADI_DEBUG @includes-05ecec1be144181c5b6cc87190875abb.txt -structs-do-not-overlap -no-const-strings -no-multiline -warn-protos -double-size-32 -char-size-8 -swc -absolute-path-dependencies -gnu-style-dependencies -MD -Mo "system/adi_initialize.d" -o "system/adi_initialize.doj" "../system/adi_initialize.c"
+'Finished building: ../system/adi_initialize.c'
+' '
+'Building file: C:/Analog Devices/ADSP-SC5xx_EZ-KIT_Lite-Rel2.0.2/ADSP-SC5xx_EZ-KIT/Examples/drivers/adc/adau1979/adc_dac_playback/SC589/SoftConfig_SC589.c'
+'Invoking: CrossCore SHARC C/C++ Compiler'
+cc21k -c -file-attr ProjectName="ADC_DAC_Playback_SC589_SHARC_Core1" -proc ADSP-SC589 -flags-compiler --no_wrap_diagnostics -si-revision any -g -DCORE1 -D_DEBUG -DADI_DEBUG @includes-05ecec1be144181c5b6cc87190875abb.txt -structs-do-not-overlap -no-const-strings -no-multiline -warn-protos -double-size-32 -char-size-8 -swc -absolute-path-dependencies -gnu-style-dependencies -MD -Mo "src/SoftConfig_SC589.d" -o "src/SoftConfig_SC589.doj" "C:/Analog Devices/ADSP-SC5xx_EZ-KIT_Lite-Rel2.0.2/ADSP-SC5xx_EZ-KIT/Examples/drivers/adc/adau1979/adc_dac_playback/SC589/SoftConfig_SC589.c"
+'Finished building: C:/Analog Devices/ADSP-SC5xx_EZ-KIT_Lite-Rel2.0.2/ADSP-SC5xx_EZ-KIT/Examples/drivers/adc/adau1979/adc_dac_playback/SC589/SoftConfig_SC589.c'
+' '
+'Building file: C:/Analog Devices/ADSP-SC5xx_EZ-KIT_Lite-Rel2.0.2/ADSP-SC5xx_EZ-KIT/Examples/drivers/adc/adau1979/adc_dac_playback/adc_dac_playback.c'
+'Invoking: CrossCore SHARC C/C++ Compiler'
+cc21k -c -file-attr ProjectName="ADC_DAC_Playback_SC589_SHARC_Core1" -proc ADSP-SC589 -flags-compiler --no_wrap_diagnostics -si-revision any -g -DCORE1 -D_DEBUG -DADI_DEBUG @includes-05ecec1be144181c5b6cc87190875abb.txt -structs-do-not-overlap -no-const-strings -no-multiline -warn-protos -double-size-32 -char-size-8 -swc -absolute-path-dependencies -gnu-style-dependencies -MD -Mo "src/adc_dac_playback.d" -o "src/adc_dac_playback.doj" "C:/Analog Devices/ADSP-SC5xx_EZ-KIT_Lite-Rel2.0.2/ADSP-SC5xx_EZ-KIT/Examples/drivers/adc/adau1979/adc_dac_playback/adc_dac_playback.c"
+"C:\Analog Devices\ADSP-SC5xx_EZ-KIT_Lite-Rel2.0.2\ADSP-SC5xx_EZ-KIT\Examples\drivers\adc\adau1979\adc_dac_playback\filter.h", line 94: cc0001: {D} warning: last line of file ends without a newline
+  }
+   ^
+
+'Finished building: C:/Analog Devices/ADSP-SC5xx_EZ-KIT_Lite-Rel2.0.2/ADSP-SC5xx_EZ-KIT/Examples/drivers/adc/adau1979/adc_dac_playback/adc_dac_playback.c'
+' '
+'Building target: ADC_DAC_Playback_SC589_SHARC_Core1.dxe'
+'Invoking: CrossCore SHARC Linker'
+cc21k -proc ADSP-SC589 -si-revision any -TC:/Analog\ Devices/ADSP-SC5xx_EZ-KIT_Lite-Rel2.0.2/ADSP-SC5xx_EZ-KIT/Examples/drivers/adc/adau1979/adc_dac_playback/SC589/sharc/adc_dac_playback_Core1/system/startup_ldf/app.ldf -no-mem -LC:/Analog\ Devices/ADSP-SC5xx_EZ-KIT_Lite-Rel2.0.2/ADSP-SC5xx_EZ-KIT/Examples/drivers/adc/adau1979/adc_dac_playback/SC589/sharc/adc_dac_playback_Core1/Debug/system/startup_ldf -flags-link -MDCORE1,-MDDEBUG,-MDOTHERCORE -flags-link -i,C:/Analog\ Devices/ADSP-SC5xx_EZ-KIT_Lite-Rel2.0.2/ADSP-SC5xx_EZ-KIT/Examples/drivers/adc/adau1979/adc_dac_playback/SC589/sharc/adc_dac_playback_Core1/system -add-debug-libpaths -o ADC_DAC_Playback_SC589_SHARC_Core1.dxe @input-file.txt  -flags-link -od,.\.
+'Finished building target: ADC_DAC_Playback_SC589_SHARC_Core1.dxe'
+' '
+16:56:24 **** Build of configuration Debug for project ADC_DAC_Playback_SC589_SHARC_Core0 ****
+make all 
+'Building file: ../system/sru/sru_config.c'
+'Invoking: CrossCore ARM Bare Metal C Compiler'
+arm-none-eabi-gcc -g -gdwarf-2 -ffunction-sections -fdata-sections -DCORE0 -D_DEBUG @includes-e64be1689249daad5bbc9712ff709209.txt -Wall -c -mproc=ADSP-SC589 -msi-revision=any -MMD -MP -MF"system/sru/sru_config.d" -o  "system/sru/sru_config.o" "../system/sru/sru_config.c"
+'Finished building: ../system/sru/sru_config.c'
+' '
+'Building file: ../system/adi_initialize.c'
+'Invoking: CrossCore ARM Bare Metal C Compiler'
+arm-none-eabi-gcc -g -gdwarf-2 -ffunction-sections -fdata-sections -DCORE0 -D_DEBUG @includes-e64be1689249daad5bbc9712ff709209.txt -Wall -c -mproc=ADSP-SC589 -msi-revision=any -MMD -MP -MF"system/adi_initialize.d" -o  "system/adi_initialize.o" "../system/adi_initialize.c"
+'Finished building: ../system/adi_initialize.c'
+' '
+'Building file: ../src/initialize_cores.c'
+'Invoking: CrossCore ARM Bare Metal C Compiler'
+arm-none-eabi-gcc -g -gdwarf-2 -ffunction-sections -fdata-sections -DCORE0 -D_DEBUG @includes-e64be1689249daad5bbc9712ff709209.txt -Wall -c -mproc=ADSP-SC589 -msi-revision=any -MMD -MP -MF"src/initialize_cores.d" -o  "src/initialize_cores.o" "../src/initialize_cores.c"
+'Finished building: ../src/initialize_cores.c'
+' '
+'Building target: ADC_DAC_Playback_SC589_SHARC_Core0'
+'Invoking: CrossCore ARM Bare Metal C Linker'
+arm-none-eabi-gcc -mproc=ADSP-SC589 -msi-revision=any -Wl,--gc-sections -mdebug-libs -o  "ADC_DAC_Playback_SC589_SHARC_Core0" @input-file.txt -lm
+'Finished building target: ADC_DAC_Playback_SC589_SHARC_Core0'
+' '
+16:56:25 **** Build of configuration Debug for project ADC_DAC_Playback_SC589_SHARC_Core2 ****
+make all 
+'Building file: ../src/empty_main.c'
+'Invoking: CrossCore SHARC C/C++ Compiler'
+cc21k -c -file-attr ProjectName="ADC_DAC_Playback_SC589_SHARC_Core2" -proc ADSP-SC589 -flags-compiler --no_wrap_diagnostics -si-revision any -g -DCORE2 -D_DEBUG -structs-do-not-overlap -no-const-strings -no-multiline -warn-protos -double-size-32 -char-size-8 -swc -absolute-path-dependencies -gnu-style-dependencies -MD -Mo "src/empty_main.d" -o "src/empty_main.doj" "../src/empty_main.c"
+'Finished building: ../src/empty_main.c'
+' '
+'Building target: ADC_DAC_Playback_SC589_SHARC_Core2.dxe'
+'Invoking: CrossCore SHARC Linker'
+cc21k -proc ADSP-SC589 -si-revision any -no-mem -flags-link -MDCORE2,-MDOTHERCORE,-MDDEBUG -add-debug-libpaths -o ADC_DAC_Playback_SC589_SHARC_Core2.dxe @input-file.txt   -flags-link -od,.\.
+'Finished building target: ADC_DAC_Playback_SC589_SHARC_Core2.dxe'
+' '
+16:56:42 **** Incremental Build of configuration Debug for project ADC_DAC_Playback_SC589_SHARC_Core1 ****
 make all 
 make: Nothing to be done for `all'.
-09:05:26 **** Incremental Build of configuration Debug for project ADC_DAC_Playback_SC589_SHARC_Core0 ****
+16:56:43 **** Incremental Build of configuration Debug for project ADC_DAC_Playback_SC589_SHARC_Core0 ****
 make all 
 make: Nothing to be done for `all'.
-09:05:26 **** Incremental Build of configuration Debug for project ADC_DAC_Playback_SC589_SHARC_Core2 ****
+16:56:43 **** Incremental Build of configuration Debug for project ADC_DAC_Playback_SC589_SHARC_Core2 ****
 make all 
 make: Nothing to be done for `all'.
-09:05:43 **** Incremental Build of configuration Debug for project ADC_DAC_Playback_SC589_SHARC_Core1 ****
+17:00:21 **** Incremental Build of configuration Debug for project ADC_DAC_Playback_SC589_SHARC_Core1 ****
 make all 
 make: Nothing to be done for `all'.
-09:05:43 **** Incremental Build of configuration Debug for project ADC_DAC_Playback_SC589_SHARC_Core0 ****
+17:00:21 **** Incremental Build of configuration Debug for project ADC_DAC_Playback_SC589_SHARC_Core0 ****
 make all 
 make: Nothing to be done for `all'.
-09:05:43 **** Incremental Build of configuration Debug for project ADC_DAC_Playback_SC589_SHARC_Core2 ****
+17:00:22 **** Incremental Build of configuration Debug for project ADC_DAC_Playback_SC589_SHARC_Core2 ****
+make all 
+make: Nothing to be done for `all'.
+17:00:46 **** Incremental Build of configuration Debug for project ADC_DAC_Playback_SC589_SHARC_Core1 ****
+make all 
+make: Nothing to be done for `all'.
+17:00:46 **** Incremental Build of configuration Debug for project ADC_DAC_Playback_SC589_SHARC_Core0 ****
+make all 
+make: Nothing to be done for `all'.
+17:00:47 **** Incremental Build of configuration Debug for project ADC_DAC_Playback_SC589_SHARC_Core2 ****
 make all 
 make: Nothing to be done for `all'.

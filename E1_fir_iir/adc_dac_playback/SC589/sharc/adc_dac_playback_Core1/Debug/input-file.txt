@@ -1,0 +1,8 @@
+"src/SoftConfig_SC589.doj"
+"src/adc_dac_playback.doj"
+"system/SC5xx_EZ-Kit/drivers/adc/adau1979/adi_adau1979.doj"
+"system/SC5xx_EZ-Kit/drivers/dac/adau1962a/adi_adau1962a.doj"
+"system/adi_initialize.doj"
+"system/startup_ldf/app_IVT.doj"
+"system/startup_ldf/app_heaptab.doj"
+"system/startup_ldf/app_startup.doj"

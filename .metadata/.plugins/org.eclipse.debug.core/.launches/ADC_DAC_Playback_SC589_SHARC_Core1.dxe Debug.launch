@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="com.analog.crosscore.debug.ui.arm.bareMetalAppOpenOCDLaunchCfgType">
+<intAttribute key="com.analog.crosscore.debug.arm.HardwareBreakpointCount" value="0"/>
+<stringAttribute key="com.analog.crosscore.debug.arm.OpenocdArguments" value=" "/>
+<stringAttribute key="com.analog.crosscore.debug.arm.OpenocdCommand" value="openocd"/>
+<booleanAttribute key="com.analog.crosscore.debug.arm.OpenocdHaltPeripherals" value="false"/>
+<stringAttribute key="com.analog.crosscore.debug.arm.OpenocdInterfaceScript" value="C:\Analog Devices\CrossCore Embedded Studio 2.9.3\ARM\openocd\share\openocd\scripts\interface\jlink.cfg"/>
+<stringAttribute key="com.analog.crosscore.debug.arm.OpenocdMaxSpeed" value="1000"/>
+<stringAttribute key="com.analog.crosscore.debug.arm.OpenocdTargetBoardScript" value="C:\Analog Devices\CrossCore Embedded Studio 2.9.3\ARM\openocd\share\openocd\scripts\board\adspsc589_ezbrd.cfg"/>
+<booleanAttribute key="com.analog.crosscore.debug.arm.OpenocdTargetEnabled" value="false"/>
+<stringAttribute key="com.arm.cmsis.pack.debug.PROCESSOR_FOR_LAUNCH_CONFIG_ATTR" value="ADSP-SC589"/>
+<intAttribute key="org.eclipse.cdt.debug.gdbjtag.core.delay" value="1"/>
+<booleanAttribute key="org.eclipse.cdt.debug.gdbjtag.core.doHalt" value="true"/>
+<booleanAttribute key="org.eclipse.cdt.debug.gdbjtag.core.doReset" value="true"/>
+<stringAttribute key="org.eclipse.cdt.debug.gdbjtag.core.imageFileName" value=""/>
+<stringAttribute key="org.eclipse.cdt.debug.gdbjtag.core.imageOffset" value=""/>
+<stringAttribute key="org.eclipse.cdt.debug.gdbjtag.core.initCommands" value="tbreak _exit&#13;&#10;tbreak abort&#13;&#10;tbreak __fatal_error"/>
+<stringAttribute key="org.eclipse.cdt.debug.gdbjtag.core.ipAddress" value="localhost"/>
+<stringAttribute key="org.eclipse.cdt.debug.gdbjtag.core.jtagDevice" value="Generic TCP/IP"/>
+<booleanAttribute key="org.eclipse.cdt.debug.gdbjtag.core.loadImage" value="true"/>
+<booleanAttribute key="org.eclipse.cdt.debug.gdbjtag.core.loadSymbols" value="true"/>
+<stringAttribute key="org.eclipse.cdt.debug.gdbjtag.core.pcRegister" value=""/>
+<intAttribute key="org.eclipse.cdt.debug.gdbjtag.core.portNumber" value="3333"/>
+<stringAttribute key="org.eclipse.cdt.debug.gdbjtag.core.runCommands" value=""/>
+<booleanAttribute key="org.eclipse.cdt.debug.gdbjtag.core.setPcRegister" value="false"/>
+<booleanAttribute key="org.eclipse.cdt.debug.gdbjtag.core.setResume" value="true"/>
+<booleanAttribute key="org.eclipse.cdt.debug.gdbjtag.core.setStopAt" value="true"/>
+<stringAttribute key="org.eclipse.cdt.debug.gdbjtag.core.stopAt" value="main"/>
+<stringAttribute key="org.eclipse.cdt.debug.gdbjtag.core.symbolsFileName" value=""/>
+<stringAttribute key="org.eclipse.cdt.debug.gdbjtag.core.symbolsOffset" value=""/>
+<booleanAttribute key="org.eclipse.cdt.debug.gdbjtag.core.useFileForImage" value="false"/>
+<booleanAttribute key="org.eclipse.cdt.debug.gdbjtag.core.useFileForSymbols" value="false"/>
+<booleanAttribute key="org.eclipse.cdt.debug.gdbjtag.core.useProjBinaryForImage" value="true"/>
+<booleanAttribute key="org.eclipse.cdt.debug.gdbjtag.core.useProjBinaryForSymbols" value="true"/>
+<booleanAttribute key="org.eclipse.cdt.debug.gdbjtag.core.useRemoteTarget" value="true"/>
+<stringAttribute key="org.eclipse.cdt.dsf.gdb.DEBUG_NAME" value="${CCES_HOME}\ARM\arm-none-eabi\bin\arm-none-eabi-gdb"/>
+<booleanAttribute key="org.eclipse.cdt.dsf.gdb.UPDATE_THREADLIST_ON_SUSPEND" value="false"/>
+<intAttribute key="org.eclipse.cdt.launch.ATTR_BUILD_BEFORE_LAUNCH_ATTR" value="2"/>
+<stringAttribute key="org.eclipse.cdt.launch.DEBUGGER_REGISTER_GROUPS" value=""/>
+<stringAttribute key="org.eclipse.cdt.launch.PROGRAM_NAME" value="Debug/ADC_DAC_Playback_SC589_SHARC_Core1.dxe"/>
+<stringAttribute key="org.eclipse.cdt.launch.PROJECT_ATTR" value="ADC_DAC_Playback_SC589_SHARC_Core1"/>
+<booleanAttribute key="org.eclipse.cdt.launch.PROJECT_BUILD_CONFIG_AUTO_ATTR" value="false"/>
+<stringAttribute key="org.eclipse.cdt.launch.PROJECT_BUILD_CONFIG_ID_ATTR" value=""/>
+<stringAttribute key="org.eclipse.cdt.launch.WORKING_DIRECTORY" value="C:/Analog Devices/ADSP-SC5xx_EZ-KIT_Lite-Rel2.0.2/ADSP-SC5xx_EZ-KIT/Examples/drivers/adc/adau1979/adc_dac_playback/SC589/sharc/adc_dac_playback_Core1/Debug"/>
+<booleanAttribute key="org.eclipse.cdt.launch.use_terminal" value="false"/>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/ADC_DAC_Playback_SC589_SHARC_Core1"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="4"/>
+</listAttribute>
+<stringAttribute key="process_factory_id" value="org.eclipse.cdt.dsf.gdb.GdbProcessFactory"/>
+</launchConfiguration>

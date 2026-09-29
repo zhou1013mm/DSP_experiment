@@ -1,0 +1,1 @@
+-iC:/Analog Devices/ADSP-SC5xx_EZ-KIT_Lite-Rel2.0.2/ADSP-SC5xx_EZ-KIT/Examples/drivers/adc/adau1979/adc_dac_playback/SC589/sharc/adc_dac_playback_Core1/system

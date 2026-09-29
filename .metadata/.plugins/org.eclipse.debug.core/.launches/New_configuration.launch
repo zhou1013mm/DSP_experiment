@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="com.analog.crosscore.debug.launchType">
-<stringAttribute key="AutomaticBreakpoint.LastSelectedProcId" value="0"/>
+<stringAttribute key="AutomaticBreakpoint.LastSelectedProcId" value="1"/>
 <intAttribute key="AutomaticBreakpointCount" value="22"/>
 <stringAttribute key="AutomaticBreakpointDescription0" value="Program aborted"/>
 <stringAttribute key="AutomaticBreakpointDescription1" value="End of program"/>
@@ -24,11 +24,11 @@
 <stringAttribute key="AutomaticBreakpointDescription7" value="Fatal error occurred in RTL"/>
 <stringAttribute key="AutomaticBreakpointDescription8" value="Start of program"/>
 <stringAttribute key="AutomaticBreakpointDescription9" value="Used for stdio"/>
-<stringAttribute key="AutomaticBreakpointEnabled0" value="true"/>
-<stringAttribute key="AutomaticBreakpointEnabled1" value="true"/>
-<stringAttribute key="AutomaticBreakpointEnabled10" value="true"/>
-<stringAttribute key="AutomaticBreakpointEnabled11" value="true"/>
-<stringAttribute key="AutomaticBreakpointEnabled12" value="true"/>
+<stringAttribute key="AutomaticBreakpointEnabled0" value="false"/>
+<stringAttribute key="AutomaticBreakpointEnabled1" value="false"/>
+<stringAttribute key="AutomaticBreakpointEnabled10" value="false"/>
+<stringAttribute key="AutomaticBreakpointEnabled11" value="false"/>
+<stringAttribute key="AutomaticBreakpointEnabled12" value="false"/>
 <stringAttribute key="AutomaticBreakpointEnabled13" value="true"/>
 <stringAttribute key="AutomaticBreakpointEnabled14" value="true"/>
 <stringAttribute key="AutomaticBreakpointEnabled15" value="true"/>
@@ -36,16 +36,16 @@
 <stringAttribute key="AutomaticBreakpointEnabled17" value="true"/>
 <stringAttribute key="AutomaticBreakpointEnabled18" value="true"/>
 <stringAttribute key="AutomaticBreakpointEnabled19" value="true"/>
-<stringAttribute key="AutomaticBreakpointEnabled2" value="true"/>
+<stringAttribute key="AutomaticBreakpointEnabled2" value="false"/>
 <stringAttribute key="AutomaticBreakpointEnabled20" value="true"/>
 <stringAttribute key="AutomaticBreakpointEnabled21" value="true"/>
-<stringAttribute key="AutomaticBreakpointEnabled3" value="true"/>
-<stringAttribute key="AutomaticBreakpointEnabled4" value="true"/>
-<stringAttribute key="AutomaticBreakpointEnabled5" value="true"/>
-<stringAttribute key="AutomaticBreakpointEnabled6" value="true"/>
-<stringAttribute key="AutomaticBreakpointEnabled7" value="true"/>
-<stringAttribute key="AutomaticBreakpointEnabled8" value="true"/>
-<stringAttribute key="AutomaticBreakpointEnabled9" value="true"/>
+<stringAttribute key="AutomaticBreakpointEnabled3" value="false"/>
+<stringAttribute key="AutomaticBreakpointEnabled4" value="false"/>
+<stringAttribute key="AutomaticBreakpointEnabled5" value="false"/>
+<stringAttribute key="AutomaticBreakpointEnabled6" value="false"/>
+<stringAttribute key="AutomaticBreakpointEnabled7" value="false"/>
+<stringAttribute key="AutomaticBreakpointEnabled8" value="false"/>
+<stringAttribute key="AutomaticBreakpointEnabled9" value="false"/>
 <stringAttribute key="AutomaticBreakpointHardware0" value="false"/>
 <stringAttribute key="AutomaticBreakpointHardware1" value="false"/>
 <stringAttribute key="AutomaticBreakpointHardware10" value="false"/>
@@ -134,6 +134,17 @@
 <stringAttribute key="AutomaticBreakpointPublic7" value="true"/>
 <stringAttribute key="AutomaticBreakpointPublic8" value="true"/>
 <stringAttribute key="AutomaticBreakpointPublic9" value="false"/>
+<stringAttribute key="AutomaticBreakpointSetAtLocation0" value="abort"/>
+<stringAttribute key="AutomaticBreakpointSetAtLocation1" value="_exit"/>
+<stringAttribute key="AutomaticBreakpointSetAtLocation13" value="___lib_prog_term"/>
+<stringAttribute key="AutomaticBreakpointSetAtLocation16" value="__fatal_error"/>
+<stringAttribute key="AutomaticBreakpointSetAtLocation17" value="0x1c077f"/>
+<stringAttribute key="AutomaticBreakpointSetAtLocation2" value="__fatal_error"/>
+<stringAttribute key="AutomaticBreakpointSetAtLocation3" value="0xc1004d34"/>
+<stringAttribute key="AutomaticBreakpointSetAtLocation4" value="___lib_prog_term"/>
+<stringAttribute key="AutomaticBreakpointSetAtLocation7" value="__fatal_error"/>
+<stringAttribute key="AutomaticBreakpointSetAtLocation8" value="0x1c162c"/>
+<stringAttribute key="AutomaticBreakpointSetAtLocation9" value="__primIO"/>
 <stringAttribute key="AutomaticBreakpointUser0" value="false"/>
 <stringAttribute key="AutomaticBreakpointUser1" value="false"/>
 <stringAttribute key="AutomaticBreakpointUser10" value="false"/>
@@ -165,6 +176,8 @@
 <stringAttribute key="Device0.HaltPeripherals1" value="b0"/>
 <stringAttribute key="Device0.HaltPeripherals2" value="b0"/>
 <stringAttribute key="Emulator.EnableSemihosting0" value="b1"/>
+<stringAttribute key="Emulator.EnableSemihosting1" value="b1"/>
+<stringAttribute key="Emulator.EnableSemihosting2" value="b1"/>
 <booleanAttribute key="EnableCustomizations" value="false"/>
 <stringAttribute key="MPGroupActive" value="Default"/>
 <intAttribute key="MPGroupCount" value="1"/>
@@ -172,8 +185,9 @@
 <stringAttribute key="MPGroupProcIdList0" value="0 1 2"/>
 <stringAttribute key="Platform" value="ADSP-SC589 via ICE-1000"/>
 <stringAttribute key="Processor" value="ADSP-SC589"/>
-<stringAttribute key="TargetOptions.LastSelectedProcId" value="0"/>
-<intAttribute key="com.analog.crosscore.debug.debugModel.ATTR_LOADPROGRAM_PROPERTIES.0" value="514"/>
+<stringAttribute key="TargetOptions.LastSelectedProcId" value="1"/>
+<booleanAttribute key="WarnChangeTargetOptions" value="true"/>
+<intAttribute key="com.analog.crosscore.debug.debugModel.ATTR_LOADPROGRAM_PROPERTIES.0" value="770"/>
 <intAttribute key="com.analog.crosscore.debug.debugModel.ATTR_LOADPROGRAM_PROPERTIES.1" value="770"/>
 <intAttribute key="com.analog.crosscore.debug.debugModel.ATTR_LOADPROGRAM_PROPERTIES.2" value="770"/>
 <intAttribute key="com.analog.crosscore.debug.debugModel.ATTR_LOADPROGRAM_PROPERTIES0.0" value="1800"/>
@@ -197,6 +211,8 @@
 <stringAttribute key="com.analog.crosscore.debug.debugModel.ATTR_WORKING_DIR.1" value=""/>
 <stringAttribute key="com.analog.crosscore.debug.debugModel.ATTR_WORKING_DIR.2" value=""/>
 <stringAttribute key="com.analog.crosscore.debug.debugModel.ATTR_WORKING_DIR0.0" value=""/>
+<stringAttribute key="com.analog.crosscore.launch.MEMORY_BLOCKS" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#13;&#10;&lt;memoryBlockExpressionList context=&quot;Context string&quot;/&gt;&#13;&#10;"/>
+<stringAttribute key="org.eclipse.cdt.debug.ui.memory.memorybrowser.MEMORY_TABS" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#13;&#10;&lt;memoryTabsList&gt;&#13;&#10;&lt;memoryTab address=&quot;0x243ce0&quot; memorySpace=&quot;SHARC L1 BW 00&quot; rendering=&quot;com.analog.crosscore.debug.ui.rendering.Hexadecimal&quot;/&gt;&#13;&#10;&lt;/memoryTabsList&gt;&#13;&#10;"/>
 <stringAttribute key="org.eclipse.cdt.launch.PROJECT_ATTR" value=""/>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
 <listEntry value="/ADC_DAC_Playback_SC589_SHARC_Core0"/>
@@ -208,4 +224,7 @@
 <listEntry value="4"/>
 <listEntry value="4"/>
 </listAttribute>
+<stringAttribute key="saved_expressions&lt;seperator&gt;Unknown" value="&amp;gCaptureStartRequest,gCaptureStartRequest,&amp;gRawCapture[0],0x243c58,srcBase,gRawCapture+24000,gRawCapture"/>
+<stringAttribute key="saved_expressions&lt;seperator&gt;Unknown&lt;seperator&gt;SHARC Core MMRs NW" value="00000002"/>
+<stringAttribute key="saved_expressions&lt;seperator&gt;Unknown&lt;seperator&gt;SHARC L1 BW 00" value="gRawCapture,gProcessedCapture,0x24f858,0x243508,AdcBuf,0x243d08,0x243cd8,0x243ce0"/>
 </launchConfiguration>

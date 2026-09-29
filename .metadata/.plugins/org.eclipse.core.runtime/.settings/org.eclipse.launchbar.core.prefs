@@ -1,7 +1,9 @@
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/arch=x86
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/name=Local
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/os=win32
-configDescList=org.eclipse.launchbar.core.descriptorType.default\:New_configuration
+configDescList=org.eclipse.launchbar.core.descriptorType.default\:ADC_DAC_Playback_SC589_SHARC_Core1.dxe Debug,org.eclipse.launchbar.core.descriptorType.default\:New_configuration
 eclipse.preferences.version=1
+org.eclipse.launchbar.core.descriptorType.default\:ADC_DAC_Playback_SC589_SHARC_Core1.dxe\ Debug/activeLaunchMode=run
+org.eclipse.launchbar.core.descriptorType.default\:ADC_DAC_Playback_SC589_SHARC_Core1.dxe\ Debug/activeLaunchTarget=org.eclipse.launchbar.core.launchTargetType.local\:Local
 org.eclipse.launchbar.core.descriptorType.default\:New_configuration/activeLaunchMode=debug
 org.eclipse.launchbar.core.descriptorType.default\:New_configuration/activeLaunchTarget=org.eclipse.launchbar.core.launchTargetType.local\:Local
