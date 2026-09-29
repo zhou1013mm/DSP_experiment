@@ -1,6 +1,6 @@
-17:00:46 **** Incremental Build of configuration Debug for project ADC_DAC_Playback_SC589_SHARC_Core1 ****
+03:44:03 **** Incremental Build of configuration Debug for project ADC_DAC_Playback_SC589_SHARC_Core1 ****
 make all 
 make: Nothing to be done for `all'.
 
-17:00:46 Build Finished (took 108ms)
+03:44:03 Build Finished (took 101ms)
 

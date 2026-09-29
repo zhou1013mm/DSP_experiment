@@ -951,25 +951,47 @@ uint32_t ProcessBuffers(void)
 #ifdef PLAYBACK
 #ifndef TDM_MODE
         {
-			float fir_coef[] = { -0.0006, -0.0018, -0.0026, -0.0016,  0.0024,  0.0083,  0.0118,  0.0068,
-								 -0.0092, -0.0297, -0.0398, -0.0223,  0.0310,  0.1111,  0.1925,  0.2437,
-								  0.2437,  0.1925,  0.1111,  0.0310, -0.0223, -0.0398, -0.0297, -0.0092,
-								  0.0068,  0.0118,  0.0083,  0.0024, -0.0016, -0.0026, -0.0018, -0.0006 };
+			float fir_coef[] = { -0.0014,   -0.0013,   -0.0011,   -0.0006,    0.0009,    0.0036,    0.0082,    0.0148,    0.0234,    0.0337,    0.0452,    0.0569,    0.0680,    0.0774,    0.0843,    0.0879,    0.0879,    0.0843,    0.0774,
+								  0.0680,    0.0569,    0.0452,    0.0337,    0.0234,    0.0148,    0.0082,    0.0036,    0.0009,   -0.0006,   -0.0011,   -0.0013,   -0.0014};
+			float sos[] = {1.0000,    2.0003,    0.9999,    1.0000,   -1.5407,    0.5951,
+						   1.0000,    2.0305,    1.0309,    1.0000,   -1.5897,    0.6458,
+						   1.0000,    1.9997,    1.0001,    1.0000,   -1.6890,    0.7486,
+						   1.0000,    1.9695,    0.9700,    1.0000,   -1.8390,    0.9039};
+			float g = 4.6020e-08;
             uint32_t sampleCount = AUDIO_BUFFER_SIZE / sizeof(int32_t);
             int32_t *pSrc32 = (int32_t *)pSrc;
             int32_t *pDst32 = (int32_t *)pDst;
-            float inputBuffer[AUDIO_BUFFER_SIZE / sizeof(float)];
-            float filteredBuffer[AUDIO_BUFFER_SIZE / sizeof(float)];
-			
-            for (i = 0; i < sampleCount; i++) inputBuffer[i] = (float)pSrc32[i];
-            Fir4C_NoAlloc(fir_coef, inputBuffer, filteredBuffer);
-			
-            for (i = 0; i < sampleCount; i++)
-            {
-                if      (filteredBuffer[i] >  (float)INT32_MAX) pDst32[i] = INT32_MAX;
-                else if (filteredBuffer[i] <  (float)INT32_MIN) pDst32[i] = INT32_MIN;
-                else                                             pDst32[i] = (int32_t)filteredBuffer[i];
-            }
+			float inputBuffer[AUDIO_BUFFER_SIZE / sizeof(float)];
+			float *pFiltered = NULL;
+
+			for (i = 0; i < sampleCount; i++)
+			{
+				inputBuffer[i] = (float)pSrc32[i];
+			}
+
+#ifdef FIR_TEST
+			pFiltered = FIR_4C(fir_coef, inputBuffer, NULL);
+#else
+			pFiltered = IIR_4C(sos,
+							(int)(sizeof(sos) / sizeof(sos[0])),
+							inputBuffer,
+							NULL,
+							g);
+#endif
+
+			if (pFiltered == NULL)
+			{
+				return 1u;
+			}
+
+			for (i = 0; i < sampleCount; i++)
+			{
+				if      (pFiltered[i] >  (float)INT32_MAX) pDst32[i] = INT32_MAX;
+				else if (pFiltered[i] <  (float)INT32_MIN) pDst32[i] = INT32_MIN;
+				else                                       pDst32[i] = (int32_t)pFiltered[i];
+			}
+
+			free(pFiltered);
         }
 
 #ifdef CAPTURE_FOR_REPORT
