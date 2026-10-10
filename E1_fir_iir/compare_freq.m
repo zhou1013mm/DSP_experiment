@@ -2,163 +2,154 @@
 clear; clc; close all;
 
 % ===== config =====
-fs_full = 48000/4;        % ADC/DAC 实际采样率
-decim   = 1;            % 必须和 C 代码 CAPTURE_DECIMATION 一致
-fs      = fs_full / decim;
-
+fs = 48000;                    % 每通道采样率 = LRCLK
 rawFile  = 'raw.dat';
-procFile = 'processed.dat';
+procFile = 'processed_fir.dat';
+procFile2 = 'processed_iir.dat';
+% rawFile  = 'raw_test.dat';
+% procFile = 'processed_test.dat';
 
-% ===== load =====
-raw  = load(rawFile);
-proc = load(procFile);
-
-raw  = raw(:);
-proc = proc(:);
-
-if length(raw) ~= length(proc)
-    warning('raw (%d) 和 proc (%d) 长度不一致，取前 %d 个', ...
-            length(raw), length(proc), min(length(raw), length(proc)));
+% ===== 读 hex 文件（每行一个 0xNN）=====
+function v = read_int16_from_hex(fname)
+    fid = fopen(fname, 'r');
+    if fid < 0, error('cannot open %s', fname); end
+    C = textscan(fid, '%s');
+    fclose(fid);
+    tok = regexprep(C{1}, '^0[xX]', '');
+    b = uint8(hex2dec(tok));
+    if mod(numel(b),2) ~= 0, b = b(1:end-1); end
+    lo = double(b(1:2:end));
+    hi = double(b(2:2:end));
+    u16 = lo + 256*hi;
+    v = u16;
+    v(u16 >= 32768) = u16(u16 >= 32768) - 65536;
+    v = v(:);
 end
-N = min(length(raw), length(proc));
+
+raw  = read_int16_from_hex(rawFile);
+proc = read_int16_from_hex(procFile);
+proc2 = read_int16_from_hex(procFile2);
+fprintf('raw: %d, proc: %d\n', numel(raw), numel(proc));
+
+N = min(numel(raw), numel(proc));
 raw  = double(raw(1:N));
 proc = double(proc(1:N));
 fprintf('Samples used: %d, fs = %g Hz\n', N, fs);
 
-rawZ  = raw - mean(raw);
+rawZ  = raw  - mean(raw);
 procZ = proc - mean(proc);
+procZ2 = proc2 - mean(proc2);
 
-%% ===== 1) FFT magnitude compare =====
+%% ===== 1) 时域 =====
+t = (0:N-1)'/fs;
+h0 = figure('Name','Time Domain','Color','w');
+subplot(3,1,1); plot(t*1000, raw); grid on;
+xlabel('Time (ms)'); ylabel('Amp'); title('Raw (ADC Ch0)'); xlim([0 20]);
+subplot(3,1,2); plot(t*1000, proc); grid on;
+xlabel('Time (ms)'); ylabel('Amp'); title('Processed (FIR)'); xlim([0 20]);
+subplot(3,1,3); plot(t*1000, proc2); grid on;
+xlabel('Time (ms)'); ylabel('Amp'); title('Processed (IIR)'); xlim([0 20]);
+
+%% ===== 2) FFT =====
 Nfft = 2^nextpow2(N);
 w = hann(N);
-
 Xr = fft(rawZ .* w, Nfft);
 Xp = fft(procZ .* w, Nfft);
-
-f = (0:Nfft/2)' * fs / Nfft;
+Xp2 = fft(procZ2 .* w, Nfft);
+f  = (0:Nfft/2)' * fs / Nfft;
 Ar = abs(Xr(1:Nfft/2+1));
 Ap = abs(Xp(1:Nfft/2+1));
+Ap2 = abs(Xp2(1:Nfft/2+1));
 
-% 用同一个参考归一化，保留增益差异
 ref = max(Ar + eps);
-Ar_dB = 20*log10(Ar / ref + eps);
-Ap_dB = 20*log10(Ap / ref + eps);
+h1 = figure('Name','FFT dB','Color','w');
+subplot(2,1,1);
+plot(f, 20*log10(Ar/ref+eps), 'b', 'LineWidth', 1); hold on;
+plot(f, 20*log10(Ap/ref+eps), 'r', 'LineWidth', 1);
+grid on; xlim([0 10000]);
+xlabel('Frequency (Hz)'); ylabel('dB (ref=raw peak)');
+title('FFT Comparison, FIR'); legend('Raw','Processed','Location','best');
+subplot(2,1,2);
+plot(f, 20*log10(Ar/ref+eps), 'b', 'LineWidth', 1); hold on;
+plot(f, 20*log10(Ap2/ref+eps), 'r', 'LineWidth', 1);
+grid on; xlim([0 10000]);
+xlabel('Frequency (Hz)'); ylabel('dB (ref=raw peak)');
+title('FFT Comparison, IIR'); legend('Raw','Processed','Location','best');
 
-h1 = figure('Name','FFT Compare in dB','Color','w');
-plot(f, Ar_dB, 'b', 'LineWidth', 1); hold on;
-plot(f, Ap_dB, 'r', 'LineWidth', 1);
-
-grid on; xlim([0,fs/2]);
-xlabel('Frequency (Hz)');
-ylabel('Magnitude (dB, ref = raw peak)');
-title('FFT Magnitude Comparison');
-legend('Raw','Processed','Location','best');
-
-%% ===== 2) Welch PSD compare =====
-winLen   = 4096;
-noverlap = round(winLen*0.5);
-nfft_psd = 8192;
-
-[Pr, f_psd] = pwelch(rawZ,  hann(winLen), noverlap, nfft_psd, fs, 'onesided');
-[Pp, ~    ] = pwelch(procZ, hann(winLen), noverlap, nfft_psd, fs, 'onesided');
-
-Pr_dB = 10*log10(max(Pr, 1e-20));
-Pp_dB = 10*log10(max(Pp, 1e-20));
-
-h2 = figure('Name','PSD Compare','Color','w');
-plot(f_psd, Pr_dB, 'b', 'LineWidth', 1); hold on;
-plot(f_psd, Pp_dB, 'r', 'LineWidth', 1); 
-grid on; xlim([0,fs/2]);
-xlabel('Frequency (Hz)');
-ylabel('PSD (dB/Hz)');
-title('Welch Power Spectral Density Comparison');
-legend('Raw','Processed','Location','best');
-
-%% ===== 3) FFT Amplitude compare =====
-
-h3 = figure('Name','FFT Compare','Color','w');
+h2 = figure('Name','FFT linear','Color','w');
+subplot(2,1,1);
 plot(f, Ar, 'b', 'LineWidth', 1); hold on;
 plot(f, Ap, 'r', 'LineWidth', 1);
+grid on; xlim([0 10000]);
+xlabel('Frequency (Hz)'); ylabel('Amplitude');
+title('FFT Amplitude, FIR'); legend('Raw','Processed','Location','best');
+subplot(2,1,2);
+plot(f, Ar, 'b', 'LineWidth', 1); hold on;
+plot(f, Ap2, 'r', 'LineWidth', 1);
+grid on; xlim([0 10000]);
+xlabel('Frequency (Hz)'); ylabel('Amplitude');
+title('FFT Amplitude, IIR'); legend('Raw','Processed','Location','best');
 
-grid on; xlim([0,fs/2]);
-xlabel('Frequency (Hz)');
-ylabel('Amplitude (ref = raw peak)');
-title('FFT Amplitude Comparison');
-legend('Raw','Processed','Location','best');
+% %% ===== 3) 理想合成波对比 =====
+% f1 = 1000; f2 = 2000; f3 = 6000;
+% ideal = (sin(2*pi*f1*t) + sin(2*pi*f2*t) + sin(2*pi*f3*t)) / 3;
+% Xi = fft((ideal - mean(ideal)) .* w, Nfft);
+% Ai = abs(Xi(1:Nfft/2+1));
+% 
+% h3 = figure('Name','Ideal vs Measured','Color','w');
+% subplot(2,1,1);
+% plot(t*1000, ideal, 'k'); grid on; xlim([0 20]);
+% xlabel('Time (ms)'); ylabel('Amp'); title('Ideal 1k+2k+6k');
+% subplot(2,1,2);
+% plot(f, Ar/max(Ar), 'b'); hold on;
+% plot(f, Ai/max(Ai), 'k--');
+% grid on; xlim([0 10000]);
+% xlabel('Frequency (Hz)'); ylabel('Normalized');
+% title('Raw FFT vs Ideal FFT'); legend('Raw','Ideal');
 
+%% ===== 4) Welch PSD =====
+winLen = min(4096, floor(N/4));
+noverlap = round(winLen*0.5);
+[Pr, fp] = pwelch(rawZ,  hann(winLen), noverlap, 8192, fs);
+[Pp, ~ ] = pwelch(procZ, hann(winLen), noverlap, 8192, fs);
+[Pp2, ~ ] = pwelch(procZ2, hann(winLen), noverlap, 8192, fs);
 
-%% test
+h4 = figure('Name','PSD','Color','w');
+subplot(2,1,1);
+plot(fp, 10*log10(max(Pr,1e-20)), 'b'); hold on;
+plot(fp, 10*log10(max(Pp,1e-20)), 'r'); grid on; xlim([0 10000]);
+xlabel('Frequency (Hz)'); ylabel('PSD (dB/Hz)');
+title('Welch PSD, FIR'); legend('Raw','Processed');
+subplot(2,1,2);
+plot(fp, 10*log10(max(Pr,1e-20)), 'b'); hold on;
+plot(fp, 10*log10(max(Pp2,1e-20)), 'r'); grid on; xlim([0 10000]);
+xlabel('Frequency (Hz)'); ylabel('PSD (dB/Hz)');
+title('Welch PSD, IIR'); legend('Raw','Processed');
 
-fs = fs_full;
-f1 = 1000; f2 = 2000; f3 = 6000;
-t = linspace(0, 0.5, 0.5*fs);
-a1 = sin(2*pi*f1*t);
-a2 = sin(2*pi*f2*t);
-a3 = sin(2*pi*f3*t);
-a = a1+a2+a3;
-
-% 时域
-h4 = figure;
-plot(t, a/3);% hold on; plot(t,(a1+a2)/2,'r'); hold on; plot(t,(a1),'yellow'); 
-xlim([0, 0.01]);
-
-% 频域
-N = length(a);
-freq = fft(a);
-f = (0:N-1)*(fs/N);         % 频率轴
-
-h5 = figure;
-plot(f, abs(freq));
-xlim([0, 10000]);           % 只看低频段，方便看 1000/2000/6000
-xlabel('Frequency (Hz)'); ylabel('|FFT|');
-
-
-% raw & proc , stride because data collection used int_16_t
-
-stride = 1:1:24000;
-
-raw_stride = raw(stride,1)./max(raw);
-raw_stride = raw_stride - mean(raw_stride);
-h6 = figure; plot(raw_stride');
-% 频域
-N = length(raw_stride);
-freq_raw = fft(raw_stride');
-f = (0:N-1)*(fs/N);         % 频率轴
-% raw_stride freq test
-h7 = figure;
-plot(f,abs(freq_raw));
-xlabel('Frequency (Hz)'); ylabel('|FFT|');
-
-proc_stride = proc(stride,1)./max(proc);
-proc_stride = proc_stride - mean(proc_stride);
-h8 = figure; plot(proc_stride');
-% 频域
-N = length(proc_stride);
-freq_proc = fft(proc_stride');
-f = (0:N-1)*(fs/N);         % 频率轴
-% proc_stride freq test
-h9 = figure;
-plot(f,abs(freq_proc));
-xlabel('Frequency (Hz)'); ylabel('|FFT|');
-
-fc = 2000;           % 截止频率
-N_fir = 32;          % FIR 长度（31阶）
-
-b_fir = fir1(N_fir-1, fc/(fs/2));            % FIR，31阶
-h_fir = filter(b_fir, 1, raw_stride');
-freq_matlab_proc = fft(h_fir);
-h10 = figure; plot(f,abs(freq_matlab_proc));
+%% 保存
+saveas(h0, './assets/time_domain.png');
+saveas(h1, './assets/fft_dB.png');
+saveas(h2, './assets/fft_linear.png');
+% saveas(h3, './assets/ideal_vs_raw.png');
+saveas(h4, './assets/psd.png');
 
 
-%% 保存图片
-
-saveas(h1, 'fft_compare_dB.png');
-saveas(h2, 'psd_compare.png');
-saveas(h3, 'fft_compare.png');
-saveas(h4, 'matlab_sin.png');
-saveas(h5, 'matlab_sin_freq.png');
-saveas(h6, 'raw.png');
-saveas(h7, 'raw_freq.png');
-saveas(h8, 'proc.png');
-saveas(h9, 'proc_freq.png');
-saveas(h10,'matlab_proc_freq.png')
+% %% test 大小端存储
+% b = uint8(load('processed_test.dat'));   % 48000x1
+% 
+% % ---- Little-endian ----
+% lo = double(b(1:2:end));
+% hi = double(b(2:2:end));
+% v_le = lo + 256*hi;
+% v_le(v_le >= 32768) = v_le(v_le >= 32768) - 65536;
+% 
+% % ---- Big-endian ----
+% hi2 = double(b(1:2:end));
+% lo2 = double(b(2:2:end));
+% v_be = lo2 + 256*hi2;
+% v_be(v_be >= 32768) = v_be(v_be >= 32768) - 65536;
+% 
+% % 画出来看哪个像正弦
+% figure;
+% subplot(2,1,1); plot(v_le(1:200)); title('Little-endian 前200点');
+% subplot(2,1,2); plot(v_be(1:200)); title('Big-endian 前200点');

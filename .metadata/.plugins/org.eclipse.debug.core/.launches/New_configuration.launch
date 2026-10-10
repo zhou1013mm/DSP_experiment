@@ -214,7 +214,7 @@
 <stringAttribute key="com.analog.crosscore.debug.debugModel.ATTR_WORKING_DIR.2" value=""/>
 <stringAttribute key="com.analog.crosscore.debug.debugModel.ATTR_WORKING_DIR0.0" value=""/>
 <stringAttribute key="com.analog.crosscore.launch.MEMORY_BLOCKS" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#13;&#10;&lt;memoryBlockExpressionList context=&quot;Context string&quot;/&gt;&#13;&#10;"/>
-<stringAttribute key="org.eclipse.cdt.debug.ui.memory.memorybrowser.MEMORY_TABS" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#13;&#10;&lt;memoryTabsList&gt;&#13;&#10;&lt;memoryTab address=&quot;0x243920&quot; memorySpace=&quot;SHARC L1 BW 00&quot; rendering=&quot;com.analog.crosscore.debug.ui.rendering.Hexadecimal&quot;/&gt;&#13;&#10;&lt;/memoryTabsList&gt;&#13;&#10;"/>
+<stringAttribute key="org.eclipse.cdt.debug.ui.memory.memorybrowser.MEMORY_TABS" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#13;&#10;&lt;memoryTabsList&gt;&#13;&#10;&lt;memoryTab address=&quot;0x244b80&quot; memorySpace=&quot;SHARC L1 BW 00&quot; rendering=&quot;com.analog.crosscore.debug.ui.rendering.Hexadecimal&quot;/&gt;&#13;&#10;&lt;/memoryTabsList&gt;&#13;&#10;"/>
 <stringAttribute key="org.eclipse.cdt.launch.PROJECT_ATTR" value=""/>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
 <listEntry value="/ADC_DAC_Playback_SC589_SHARC_Core0"/>
@@ -228,5 +228,5 @@
 </listAttribute>
 <stringAttribute key="saved_expressions&lt;seperator&gt;Unknown" value="&amp;gCaptureStartRequest,gCaptureStartRequest,&amp;gRawCapture[0],0x243c58,srcBase,gRawCapture+24000,gRawCapture"/>
 <stringAttribute key="saved_expressions&lt;seperator&gt;Unknown&lt;seperator&gt;SHARC Core MMRs NW" value="00000002"/>
-<stringAttribute key="saved_expressions&lt;seperator&gt;Unknown&lt;seperator&gt;SHARC L1 BW 00" value="gRawCapture,gProcessedCapture,0x24f858,0x243508,AdcBuf,0x243d08,0x243cd8,0x243ce0,0x243d40,0x243920"/>
+<stringAttribute key="saved_expressions&lt;seperator&gt;Unknown&lt;seperator&gt;SHARC L1 BW 00" value="gRawCapture,gProcessedCapture,0x24f858,0x243508,AdcBuf,0x243d08,0x243cd8,0x243ce0,0x243d40,0x243920,0x244eb8,0x250a38,0x2452b8,0x244b80"/>
 </launchConfiguration>

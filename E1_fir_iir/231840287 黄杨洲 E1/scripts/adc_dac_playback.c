@@ -128,6 +128,8 @@ uint32_t    Adau1962aSubmitBuffers(void);
 uint32_t 	ProcessBuffers(void);
 /* Generate sine wave test tone */
 uint32_t 	Generate_SineWave(uint32_t Frequency, uint32_t SampleRate, void * pBuffer, uint32_t samples, uint32_t numchannels);
+/* self-added: Generate composite sine wave test tone for ping and pong buffers */
+uint32_t 	Generate_CompositeSine(void *pBuffer, uint32_t samples, uint32_t numchannels);
 /* Perform a correlation on a specified buffer */
 uint32_t 	Correlation(int32_t * pBuffer, uint32_t samples, uint32_t stride, int32_t * pCoorelationTable);
 /* Check a specified correlation table for a reference frequency */
@@ -292,6 +294,14 @@ int main()
 #else
 #error "processor not supported"
 #endif
+
+// /* ===== 生成合成正弦波填充 DacBuf（ping + pong） ===== */
+// if(Result == 0u)
+// {
+// 	uint32_t samplesPerBuffer = AUDIO_BUFFER_SIZE / (SAMPLE_SIZE * NUM_CHANNELS);
+// 	Generate_CompositeSine(&DacBuf[AUDIO_BUFFER_SIZE * 0u], samplesPerBuffer, NUM_CHANNELS);
+// 	Generate_CompositeSine(&DacBuf[AUDIO_BUFFER_SIZE * 1u], samplesPerBuffer, NUM_CHANNELS);
+// }
 
 /* Generate sine wave test tone for ping and pong buffers */
 #ifndef PLAYBACK
@@ -891,236 +901,156 @@ uint32_t Adau1962aSubmitBuffers(void)
 		/* return error */
 		return 1u;
 	}
-
+	
 	return Result;
 }
 
 /*
- * Processes audio buffers that are processed by ADC and DAC driver.
- *
- * Parameters
- *  None
- *
- * Returns
- *  0 if success, other values for error
- *
- */
+* Processes audio buffers that are processed by ADC and DAC driver.
+*
+* Parameters
+*  None
+*
+* Returns
+*  0 if success, other values for error
+*
+*/
 uint32_t ProcessBuffers(void)
 {
-    ADI_ADAU1979_RESULT     eResult1;
-	ADI_ADAU1962A_RESULT    eResult2;
-
-	uint32_t i =0u;
-	int *pSrc;
-	int *pDst;
-	void *pDAC = NULL;
-
-	if(pGetADC != NULL)
-	{
-		pADC = (void *)pGetADC;
-		/* re-submit the ADC buffer */
-		eResult1 = adi_adau1979_SubmitBuffer(phAdau1979, (void *) pADC, AUDIO_BUFFER_SIZE);
-		if(eResult1)
-		{
-			return 1u;
-		}
-	    pGetADC = NULL;
-	}
-
-	if (pGetDAC != NULL)
-	{
-		pDAC = (void *)pGetDAC;
-		/* re-submit the DAC buffer */
-	    eResult2 = adi_adau1962a_SubmitBuffer(phAdau1962a, (void *) pDAC, AUDIO_BUFFER_SIZE);
-
-		if(eResult2)
-		{
-			return 1u;
-		}
-
-	    pGetDAC = NULL;
-
-	}
-
-	/* copy ADC to DAC buffer */
-	if ((pDAC != NULL) && (pADC != NULL))
-	{
-		pSrc =  (int *)pADC;
-		pDst =  (int *)pDAC;
-
+	ADI_ADAU1979_RESULT     eResult1;
+    ADI_ADAU1962A_RESULT    eResult2;
+    uint32_t i;
+    int *pSrc;
+    int *pDst;
+	
+    /* 跨调用保留 pending 指针，让 ADC 和 DAC 的一拍延迟配对 */
+    static void *pendingADC = NULL;
+    static void *pendingDAC = NULL;
+	
+    if (pGetADC != NULL)
+    {
+		pendingADC = (void *)pGetADC;
+        pGetADC = NULL;
+        eResult1 = adi_adau1979_SubmitBuffer(phAdau1979, pendingADC, AUDIO_BUFFER_SIZE);
+        if (eResult1) return 1u;
+    }
+	
+    if (pGetDAC != NULL)
+    {
+		pendingDAC = (void *)pGetDAC;
+        pGetDAC = NULL;
+        eResult2 = adi_adau1962a_SubmitBuffer(phAdau1962a, pendingDAC, AUDIO_BUFFER_SIZE);
+        if (eResult2) return 1u;
+    }
+	
+    if ((pendingADC != NULL) && (pendingDAC != NULL))
+    {
+		pSrc = (int *)pendingADC;
+        pDst = (int *)pendingDAC;
+		
 #ifdef PLAYBACK
 #ifndef TDM_MODE
-		{
-			float fir_coef[] = {   -0.0006,   -0.0018,   -0.0026,   -0.0016,    0.0024,    0.0083,    0.0118,    0.0068,   -0.0092,   -0.0297,   -0.0398,   -0.0223,    0.0310,    0.1111,    0.1925,    0.2437,    0.2437,    0.1925,    0.1111,     0.0310,   -0.0223,   -0.0398,   -0.0297,   -0.0092,    0.0068,    0.0118,    0.0083,    0.0024,   -0.0016,   -0.0026,   -0.0018,   -0.0006};
-			uint32_t sampleCount = (AUDIO_BUFFER_SIZE / sizeof(int32_t));
-			int32_t *pSrc32 = (int32_t *)pSrc;
-			int32_t *pDst32 = (int32_t *)pDst;
+        {
+			float fir_coef[] = { -0.0014,   -0.0013,   -0.0011,   -0.0006,    0.0009,    0.0036,    0.0082,    0.0148,    0.0234,    0.0337,    0.0452,    0.0569,    0.0680,    0.0774,    0.0843,    0.0879,    0.0879,    0.0843,    0.0774,
+								  0.0680,    0.0569,    0.0452,    0.0337,    0.0234,    0.0148,    0.0082,    0.0036,    0.0009,   -0.0006,   -0.0011,   -0.0013,   -0.0014};
+			float sos[] = {1.0000,    2.0003,    0.9999,    1.0000,   -1.5407,    0.5951,
+						   1.0000,    2.0305,    1.0309,    1.0000,   -1.5897,    0.6458,
+						   1.0000,    1.9997,    1.0001,    1.0000,   -1.6890,    0.7486,
+						   1.0000,    1.9695,    0.9700,    1.0000,   -1.8390,    0.9039};
+			float g = 4.6020e-08;
+            uint32_t sampleCount = AUDIO_BUFFER_SIZE / sizeof(int32_t);
+            int32_t *pSrc32 = (int32_t *)pSrc;
+            int32_t *pDst32 = (int32_t *)pDst;
 			float inputBuffer[AUDIO_BUFFER_SIZE / sizeof(float)];
-			float filteredBuffer[AUDIO_BUFFER_SIZE / sizeof(float)];
+			float *pFiltered = NULL;
 
-			for(i = 0u; i < sampleCount; i++)
+			for (i = 0; i < sampleCount; i++)
 			{
 				inputBuffer[i] = (float)pSrc32[i];
 			}
 
-			Fir4C_NoAlloc(fir_coef, inputBuffer, filteredBuffer);
+#ifdef FIR_TEST
+			pFiltered = FIR_4C(fir_coef, inputBuffer, NULL);
+#else
+			pFiltered = IIR_4C(sos,
+							(int)(sizeof(sos) / sizeof(sos[0])),
+							inputBuffer,
+							NULL,
+							g);
+#endif
 
-			for(i = 0u; i < sampleCount; i++)
+			if (pFiltered == NULL)
 			{
-				if(filteredBuffer[i] > (float)INT32_MAX)
-				{
-					pDst32[i] = INT32_MAX;
-				}
-				else if(filteredBuffer[i] < (float)INT32_MIN)
-				{
-					pDst32[i] = INT32_MIN;
-				}
-				else
-				{
-					pDst32[i] = (int32_t)filteredBuffer[i];
-				}
+				return 1u;
 			}
-		}
+
+			for (i = 0; i < sampleCount; i++)
+			{
+				if      (pFiltered[i] >  (float)INT32_MAX) pDst32[i] = INT32_MAX;
+				else if (pFiltered[i] <  (float)INT32_MIN) pDst32[i] = INT32_MIN;
+				else                                       pDst32[i] = (int32_t)pFiltered[i];
+			}
+
+			free(pFiltered);
+        }
+
 #ifdef CAPTURE_FOR_REPORT
-		if(gCaptureStartRequest != 0u)
-		{
-			gCaptureStartRequest = 0u;
-			gCaptureInputFramesSeen = 0u;
-			gCaptureFramesCaptured = 0u;
-			gCaptureDone = 0u;
-			gCaptureDoneNotified = 0u;
-			gCaptureActive = 1u;
-		}
+        /* Warmup */
+        if ((gCaptureStartRequest == 0u) && (gCaptureActive == 0u) && (gCaptureDone == 0u))
+        {
+            uint32_t framesPerBuffer = (AUDIO_BUFFER_SIZE / SAMPLE_SIZE) / NUM_CHANNELS;
+            uint32_t warmupCallbacks = (SAMPLE_RATE * CAPTURE_WARMUP_SECONDS) / framesPerBuffer;
+            if (AdcCount >= warmupCallbacks) gCaptureStartRequest = 1u;
+        }
+        if (gCaptureStartRequest != 0u)
+        {
+            gCaptureStartRequest = 0u;
+            gCaptureInputFramesSeen = 0u;
+            gCaptureFramesCaptured  = 0u;
+            gCaptureDone            = 0u;
+            gCaptureDoneNotified    = 0u;
+            gCaptureActive          = 1u;
+        }
 
-		if(gCaptureActive != 0u)
-		{
-			uint32_t frameCount = (AUDIO_BUFFER_SIZE / (sizeof(int32_t) * NUM_CHANNELS));
-			int32_t *pSrc32 = (int32_t *)pSrc;
-			int32_t *pDst32 = (int32_t *)pDst;
-			uint32_t frame;
-			for(frame = 0u; frame < frameCount; frame++)
-			{
-				uint32_t sampleBase;
-				uint32_t srcBase;
-				uint32_t ch;
-
-				if(gCaptureFramesCaptured >= CAPTURE_TOTAL_FRAMES)
-				{
-					gCaptureActive = 0u;
-					gCaptureDone = 1u;
-					break;
-				}
-
-				srcBase = (frame * NUM_CHANNELS);
-				if((gCaptureInputFramesSeen % CAPTURE_DECIMATION) == 0u)
-				{
-					sampleBase = (gCaptureFramesCaptured * CAPTURE_CHANNELS);
-					for(ch = 0u; ch < CAPTURE_CHANNELS; ch++)
-					{
-						gRawCapture[sampleBase + ch] = (int16_t)(pSrc32[srcBase + ch] >> CAPTURE_Q_FORMAT_SHIFT);
-						gProcessedCapture[sampleBase + ch] = (int16_t)(pDst32[srcBase + ch] >> CAPTURE_Q_FORMAT_SHIFT);
-					}
-					gCaptureFramesCaptured++;
-				}
-				gCaptureInputFramesSeen++;
-			}
-		}
+        if (gCaptureActive != 0u)
+        {
+            uint32_t frameCount = AUDIO_BUFFER_SIZE / (sizeof(int32_t) * NUM_CHANNELS);
+            int32_t *pSrc32 = (int32_t *)pSrc;
+            int32_t *pDst32 = (int32_t *)pDst;
+            uint32_t frame;
+            for (frame = 0u; frame < frameCount; frame++)
+            {
+                uint32_t srcBase, sampleBase, ch;
+                if (gCaptureFramesCaptured >= CAPTURE_TOTAL_FRAMES)
+                {
+                    gCaptureActive = 0u;
+                    gCaptureDone = 1u;
+                    break;
+                }
+                srcBase = frame * NUM_CHANNELS;
+                if ((gCaptureInputFramesSeen % CAPTURE_DECIMATION) == 0u)
+                {
+                    sampleBase = gCaptureFramesCaptured * CAPTURE_CHANNELS;
+                    for (ch = 0u; ch < CAPTURE_CHANNELS; ch++)
+                    {
+                        gRawCapture[sampleBase + ch]       = (int16_t)(pSrc32[srcBase + ch] >> CAPTURE_Q_FORMAT_SHIFT);
+                        gProcessedCapture[sampleBase + ch] = (int16_t)(pDst32[srcBase + ch] >> CAPTURE_Q_FORMAT_SHIFT);
+                    }
+                    gCaptureFramesCaptured++;
+                }
+                gCaptureInputFramesSeen++;
+            }
+        }
 #endif
-		pDAC = NULL;
-		pADC = NULL;
-//		float fir_coef[] = {   -0.0006,   -0.0018,   -0.0026,   -0.0016,    0.0024,    0.0083,    0.0118,    0.0068,   -0.0092,   -0.0297,   -0.0398,   -0.0223,    0.0310,    0.1111,    0.1925,    0.2437,    0.2437,    0.1925,    0.1111,     0.0310,   -0.0223,   -0.0398,   -0.0297,   -0.0092,    0.0068,    0.0118,    0.0083,    0.0024,   -0.0016,   -0.0026,   -0.0018,   -0.0006};
-//		float sos[] = {
-//			1.0000,    2.0003,    0.9999,    1.0000,   -0.8351,    0.1810,
-//			1.0000,    2.0305,    1.0309,    1.0000,   -0.8906,    0.2595,
-//			1.0000,    1.9997,    1.0001,    1.0000,   -1.0153,    0.4359,
-//			1.0000,    1.9695,    0.9700,    1.0000,   -1.2428,    0.7575
-//		};
-//		float g = 1.0791e-04;
-//		int data_buffer_cnt = 0;
-//		uint32_t sampleCount = (AUDIO_BUFFER_SIZE / sizeof(int32_t));
-//		float inputBuffer[AUDIO_BUFFER_SIZE / sizeof(float)];
-//		float filteredBuffer[AUDIO_BUFFER_SIZE / sizeof(float)];
-//		int32_t *pSrc32 = (int32_t *)pSrc;
-//		int32_t *pDst32 = (int32_t *)pDst;
-//
-//		for(i = 0u; i < sampleCount; i++)
-//		{
-//			inputBuffer[i] = (float)pSrc32[i];
-//		}
-//
-//		Fir4C_NoAlloc(fir_coef, inputBuffer, filteredBuffer);
-//		//filteredBuffer = IIR_4C(sos, sos_length, inputBuffer, &data_buffer_cnt, g);
-//
-//		for(i = 0u; i < sampleCount; i++)
-//		{
-//			if(filteredBuffer[i] > (float)INT32_MAX)
-//			{
-//				pDst32[i] = INT32_MAX;
-//			}
-//			else if(filteredBuffer[i] < (float)INT32_MIN)
-//			{
-//				pDst32[i] = INT32_MIN;
-//			}
-//			else
-//			{
-//				pDst32[i] = (int32_t)filteredBuffer[i];
-//			}
-//		}
-//		pADC = NULL;
 #endif
-#ifdef TDM4
-
-		for(uint32_t i=0; i<(AUDIO_BUFFER_SIZE);i+=16)
-		{
-			pSrc =  (int8_t *)(int8_t *)pADC +i;
-
-			for(uint32_t j=0; j<8; j++)
-				{
-					*pDst++ = *pSrc++;
-				}
-			pSrc = (int8_t *)(int8_t *)pADC + i;
-
-			for(uint32_t K=8; K<16; K++)
-				{
-					*pDst++ = *pSrc++;
-				}
-
-		}
-#endif
-#ifdef TDM8
-
-		for(uint32_t i=0; i<(AUDIO_BUFFER_SIZE);i+=32)
-		{
-			pSrc =  (int8_t *)(int8_t *)pADC +i;
-
-			for(uint32_t j=0; j<8; j++)
-				{
-					*pDst++ = *pSrc++;
-				}
-			pSrc = (int8_t *)(int8_t *)pADC + i;
-
-			for(uint32_t K=8; K<16; K++)
-				{
-					*pDst++ = *pSrc++;
-				}
-			pSrc = (int8_t *)(int8_t *)pADC + i;
-
-			for(uint32_t x=16; x<24; x++)
-				{
-					*pDst++ = *pSrc++;
-				}
-			pSrc = (int8_t *)(int8_t *)pADC + i;
-			for(uint32_t y=24; y<32; y++)
-				{
-					*pDst++ = *pSrc++;
-				}
-
-		}
 #endif
 
-#endif
-}
-	return (0u);
+        /* 用掉后清空，等下一轮配对 */
+        pendingADC = NULL;
+        pendingDAC = NULL;
+    }
+
+    return 0u;
 }
 
 /*
@@ -1174,6 +1104,44 @@ uint32_t Generate_SineWave(uint32_t Frequency, uint32_t SampleRate, void * pBuff
 	}
 
 	return (0u);
+}
+
+/*
+ * 生成 1000 + 2000 + 6000 Hz 等比例线性叠加的合成正弦波
+ *
+ * Parameters
+ *  pBuffer     - 目标缓冲区
+ *  samples     - 每个通道的采样点数
+ *  numchannels - 通道数
+ *
+ * Returns
+ *  0 if success
+ */
+uint32_t Generate_CompositeSine(void *pBuffer, uint32_t samples, uint32_t numchannels)
+{
+    uint32_t i, ch;
+    int32_t *p = (int32_t *)pBuffer;
+
+    for(i = 0u; i < samples; i++)
+    {
+        float t = (float)i / (float)SAMPLE_RATE;
+        float v = SYNTH_AMP1 * sinf(2.0f * PI * (float)SYNTH_FREQ1 * t)
+                + SYNTH_AMP2 * sinf(2.0f * PI * (float)SYNTH_FREQ2 * t)
+                + SYNTH_AMP3 * sinf(2.0f * PI * (float)SYNTH_FREQ3 * t);
+
+        if(v >  (float)INT32_MAX) v =  (float)INT32_MAX;
+        if(v <  (float)INT32_MIN) v =  (float)INT32_MIN;
+
+        for(ch = 0u; ch < numchannels; ch++)
+        {
+#ifdef TDM_MODE
+            p[i * numchannels + ch] = ((int32_t)v) << 8;
+#else
+            p[i * numchannels + ch] = (int32_t)v;
+#endif
+        }
+    }
+    return (0u);
 }
 
 /*

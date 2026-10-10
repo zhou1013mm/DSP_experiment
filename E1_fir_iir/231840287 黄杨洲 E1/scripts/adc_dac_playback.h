@@ -42,11 +42,12 @@ to the terms of the associated Analog Devices License Agreement.
 
 /* Capture controls for assignment report (raw vs filtered). */
 #define CAPTURE_FOR_REPORT
-#define CAPTURE_SECONDS         (1u)
+/* 修改后 */
+#define CAPTURE_MILLISECONDS    (500u)
 #define CAPTURE_CHANNELS        (1u)
 #define CAPTURE_DECIMATION      (1u)
 #define CAPTURE_Q_FORMAT_SHIFT  (8u)
-#define CAPTURE_AUTOSTART       (1u)
+#define CAPTURE_AUTOSTART       (0u)
 #define CAPTURE_HALT_WHEN_DONE  (0u)
 #define CAPTURE_DUMP_TO_CONSOLE (0u)
 
@@ -88,7 +89,7 @@ to the terms of the associated Analog Devices License Agreement.
 #define PI							((float)3.141592765309)
 #define SAMPLE_SIZE 				(4u)
 
-#define NUM_CHANNELS				(4u)
+#define NUM_CHANNELS                (4u)   // 原来是 4u
 
 #if (CAPTURE_CHANNELS > NUM_CHANNELS)
 #error "CAPTURE_CHANNELS must be <= NUM_CHANNELS"
@@ -98,9 +99,28 @@ to the terms of the associated Analog Devices License Agreement.
 #define AUDIO_BUFFER_SIZE 	        (SAMPLES_PER_PERIOD * NUM_CHANNELS * SAMPLE_SIZE * 4u)
 
 #ifdef CAPTURE_FOR_REPORT
-#define CAPTURE_TOTAL_FRAMES     ((SAMPLE_RATE * CAPTURE_SECONDS) / CAPTURE_DECIMATION)
-#define CAPTURE_TOTAL_SAMPLES    (CAPTURE_TOTAL_FRAMES * CAPTURE_CHANNELS)
+#define CAPTURE_TOTAL_FRAMES    ((SAMPLE_RATE * CAPTURE_MILLISECONDS) / (1000u * CAPTURE_DECIMATION))
+#define CAPTURE_TOTAL_SAMPLES   (CAPTURE_TOTAL_FRAMES * CAPTURE_CHANNELS)
 #endif
+
+/* 采集前先跑这么多秒，等 ADC/DAC PLL 稳定、丢掉的都是垃圾数据 */
+#define CAPTURE_WARMUP_SECONDS  (2u)
+
+/* ===== 合成正弦波参数 ===== */
+#define SYNTH_FREQ1     (1000u)
+#define SYNTH_FREQ2     (2000u)
+#define SYNTH_FREQ3     (6000u)
+
+// #define SYNTH_FREQ1     (1333u)   /* 1333 × 0.75 = 1000 */
+// #define SYNTH_FREQ2     (2667u)   /* 2667 × 0.75 = 2000 */
+// #define SYNTH_FREQ3     (8000u)   /* 8000 × 0.75 = 6000 */
+
+/* 三个频率等比例线性叠加：每个分量幅度 = AMPLITUDE / 6
+* 这样合成波峰值不会超过 AMPLITUDE，避免 DAC/ADC 饱和
+*/
+#define SYNTH_AMP1      (AMPLITUDE / 6.0f)
+#define SYNTH_AMP2      (AMPLITUDE / 6.0f)
+#define SYNTH_AMP3      (AMPLITUDE / 6.0f)
 
 
 /* correlation parameters */
@@ -148,3 +168,6 @@ to the terms of the associated Analog Devices License Agreement.
 #endif
 
 #endif /* __ADC_DAC_PLAYBACK_H__ */
+
+
+// #define FIR_TEST

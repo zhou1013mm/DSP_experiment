@@ -107,23 +107,31 @@ title('FFT Amplitude, IIR'); legend('Raw','Processed','Location','best');
 % xlabel('Frequency (Hz)'); ylabel('Normalized');
 % title('Raw FFT vs Ideal FFT'); legend('Raw','Ideal');
 
-% %% ===== 4) Welch PSD =====
-% winLen = min(4096, floor(N/4));
-% noverlap = round(winLen*0.5);
-% [Pr, fp] = pwelch(rawZ,  hann(winLen), noverlap, 8192, fs);
-% [Pp, ~ ] = pwelch(procZ, hann(winLen), noverlap, 8192, fs);
-% h4 = figure('Name','PSD','Color','w');
-% plot(fp, 10*log10(max(Pr,1e-20)), 'b'); hold on;
-% plot(fp, 10*log10(max(Pp,1e-20)), 'r'); grid on; xlim([0 10000]);
-% xlabel('Frequency (Hz)'); ylabel('PSD (dB/Hz)');
-% title('Welch PSD'); legend('Raw','Processed');
+%% ===== 4) Welch PSD =====
+winLen = min(4096, floor(N/4));
+noverlap = round(winLen*0.5);
+[Pr, fp] = pwelch(rawZ,  hann(winLen), noverlap, 8192, fs);
+[Pp, ~ ] = pwelch(procZ, hann(winLen), noverlap, 8192, fs);
+[Pp2, ~ ] = pwelch(procZ2, hann(winLen), noverlap, 8192, fs);
+
+h4 = figure('Name','PSD','Color','w');
+subplot(2,1,1);
+plot(fp, 10*log10(max(Pr,1e-20)), 'b'); hold on;
+plot(fp, 10*log10(max(Pp,1e-20)), 'r'); grid on; xlim([0 10000]);
+xlabel('Frequency (Hz)'); ylabel('PSD (dB/Hz)');
+title('Welch PSD, FIR'); legend('Raw','Processed');
+subplot(2,1,2);
+plot(fp, 10*log10(max(Pr,1e-20)), 'b'); hold on;
+plot(fp, 10*log10(max(Pp2,1e-20)), 'r'); grid on; xlim([0 10000]);
+xlabel('Frequency (Hz)'); ylabel('PSD (dB/Hz)');
+title('Welch PSD, IIR'); legend('Raw','Processed');
 
 %% 保存
 saveas(h0, './assets/time_domain.png');
 saveas(h1, './assets/fft_dB.png');
 saveas(h2, './assets/fft_linear.png');
 % saveas(h3, './assets/ideal_vs_raw.png');
-% saveas(h4, './assets/psd.png');
+saveas(h4, './assets/psd.png');
 
 
 % %% test 大小端存储
