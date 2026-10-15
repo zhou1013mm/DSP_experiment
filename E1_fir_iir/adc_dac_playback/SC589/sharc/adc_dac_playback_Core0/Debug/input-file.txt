@@ -1,3 +1,0 @@
-"src/initialize_cores.o"
-"system/adi_initialize.o"
-"system/sru/sru_config.o"

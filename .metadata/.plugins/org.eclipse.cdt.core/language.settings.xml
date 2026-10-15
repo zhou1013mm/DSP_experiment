@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <plugin>
 	<extension point="org.eclipse.cdt.core.LanguageSettingsProvider">
-		<provider class="com.analog.crosscore.managedbuilder.core.arm.scanner.GCCBuiltinSpecsDetectorADI" console="false" env-hash="5530718507245834097" id="com.analog.crosscore.managedbuilder.core.arm.scanner.GCCBuiltinSpecsDetectorADI" keep-relative-paths="false" name="CrossCore ARM Bare Metal Builtin Specs Detector" parameter="${COMMAND} -E -P -v -dD &quot;${INPUTS}&quot;">
+		<provider class="com.analog.crosscore.managedbuilder.core.arm.scanner.GCCBuiltinSpecsDetectorADI" console="false" env-hash="6715764003138684346" id="com.analog.crosscore.managedbuilder.core.arm.scanner.GCCBuiltinSpecsDetectorADI" keep-relative-paths="false" name="CrossCore ARM Bare Metal Builtin Specs Detector" parameter="${COMMAND} -E -P -v -dD &quot;${INPUTS}&quot;">
 			<language-scope id="org.eclipse.cdt.core.c.adi.extension"/>
 			<language-scope id="org.eclipse.cdt.core.c++.adi.extension"/>
 			<language-scope id="com.analog.crosscore.ui.asm.adi.extension"/>
