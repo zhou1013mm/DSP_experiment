@@ -33,9 +33,8 @@ fprintf('FIR: 阶=%d 长=%d 群延迟=%d\n', n, L_fir, round(gd_fir));
 h_int = h_dec * P;
 
 %% ===== 3. IIR 低通 (8k 域, 1.6kHz -3dB) =====
-% 注意: 8k 采样下 2kHz 就是 Nyquist, 所以截止要略低, 1.6k~1.8k 都行
 N_iir  = 8;
-fc_iir = 1600;
+fc_iir = 2000;
 Wn_iir = fc_iir / (fs_out / 2);
 [b_iir, a_iir]  = butter(N_iir, Wn_iir, 'low');
 [sos_iir, g_iir] = tf2sos(b_iir, a_iir);

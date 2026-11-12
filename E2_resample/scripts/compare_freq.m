@@ -9,8 +9,8 @@ fs_in  = 48000;
 fs_out = 8000;
 Q      = fs_in / fs_out;   % = 6
 
-rawFile  = 'raw.dat';
-procFile = 'processed.dat';
+rawFile  = './../data/raw.dat';
+procFile = './../data/processed.dat';
 
 % ===== 读 hex =====
 function v = read_int16_from_hex(fname)
@@ -83,10 +83,10 @@ grid on; xlim([0 fs_out/2]); ylim([-90 5]);
 xlabel('Frequency (Hz)'); ylabel('dB (ref = raw8 peak)');
 title('8kHz 采样下: Raw(未滤波抽取) vs Processed(滤波后抽取)');
 legend('Raw (6k 混叠到 2k)','Processed (干净)','Location','best');
-xline(1000,'k--'); xline(2000,'k--'); xline(3000,'k--');
-text(1000,-85,'1k','HorizontalAlignment','center');
-text(2000,-85,'2k (=6k 混叠位置)','HorizontalAlignment','center');
-text(3000,-85,'3k','HorizontalAlignment','center');
+% xline(1000,'k--'); xline(2000,'k--'); xline(3000,'k--');
+% text(1000,-85,'1k','HorizontalAlignment','center');
+% text(2000,-85,'2k (=6k 混叠位置)','HorizontalAlignment','center');
+% text(3000,-85,'3k','HorizontalAlignment','center');
 
 %% ===== 2b) 8k 域频谱对比 (raw 直接抽 vs processed 滤波后抽) =====
 raw8  = raw (1:Q:end);
@@ -108,9 +108,9 @@ grid on; xlim([0 fs_out/2]); ylim([-90 5]);
 xlabel('Hz'); ylabel('dB');
 title('8k 域: Raw 直接抽 vs Processed 抽 (含IIR低通)');
 legend('Raw','Processed','Location','best');
-xline(1000,'k--'); xline(1600,'g--'); xline(2000,'k--');
-text(1000,-85,'1k'); text(1600,-85,'IIR fc'); text(2000,-85,'2k');
-saveas(h1b, './assets/fft_8k_compare.png');
+% xline(1000,'k--'); xline(1600,'g--'); xline(2000,'k--');
+% text(1000,-85,'1k'); text(1600,-85,'IIR fc'); text(2000,-85,'2k');
+saveas(h1b, './../assets/fft_8k_compare.png');
 
 %% ===== 3) 48kHz FFT (解释你看到的 6k 从哪来) =====
 Nfft = 2^nextpow2(N);
@@ -129,11 +129,11 @@ grid on; xlim([0 12000]); ylim([-90 5]);
 xlabel('Frequency (Hz)'); ylabel('dB (ref = raw peak)');
 title('48kHz 下: processed 是降采样+IIR+上采样后的结果');
 legend('Raw','Processed (ZOH)','Location','best');
-xline(1000,'k--'); xline(2000,'k--'); xline(6000,'k--'); xline(10000,'k--');
-text(1000,-85,'1k','HorizontalAlignment','center');
-text(2000,-85,'2k','HorizontalAlignment','center');
-text(6000,-85,'6k (2k 镜像)','HorizontalAlignment','center');
-text(10000,-85,'10k (2k 镜像)','HorizontalAlignment','center');
+% xline(1000,'k--'); xline(2000,'k--'); xline(6000,'k--'); xline(10000,'k--');
+% text(1000,-85,'1k','HorizontalAlignment','center');
+% text(2000,-85,'2k','HorizontalAlignment','center');
+% text(6000,-85,'6k (2k 镜像)','HorizontalAlignment','center');
+% text(10000,-85,'10k (2k 镜像)','HorizontalAlignment','center');
 
 %% ===== 4) Welch PSD =====
 winLen   = min(4096, floor(N/4));
@@ -148,10 +148,10 @@ xlabel('Frequency (Hz)'); ylabel('PSD (dB/Hz)');
 title('Welch PSD'); legend('Raw','Processed');
 
 %% ===== 保存 =====
-if ~exist('./assets','dir'), mkdir('./assets'); end
-saveas(h0, './assets/time_domain.png');
-saveas(h1, './assets/fft_8k_compare.png');
-saveas(h2, './assets/fft_48k_zoh.png');
-saveas(h4, './assets/psd.png');
+if ~exist('./../assets','dir'), mkdir('./assets'); end
+saveas(h0, './../assets/time_domain.png');
+saveas(h1, './../assets/fft_8k_compare.png');
+saveas(h2, './../assets/fft_48k_zoh.png');
+saveas(h4, './../assets/psd.png');
 
 fprintf('done.\n');

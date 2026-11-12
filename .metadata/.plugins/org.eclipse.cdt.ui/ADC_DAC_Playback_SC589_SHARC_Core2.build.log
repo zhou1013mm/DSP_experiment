@@ -1,6 +1,15 @@
-09:36:59 **** Incremental Build of configuration Debug for project ADC_DAC_Playback_SC589_SHARC_Core2 ****
+08:03:49 **** Build of configuration Debug for project ADC_DAC_Playback_SC589_SHARC_Core2 ****
 make all 
-make: Nothing to be done for `all'.
+'Building file: ../src/empty_main.c'
+'Invoking: CrossCore SHARC C/C++ Compiler'
+cc21k -c -file-attr ProjectName="ADC_DAC_Playback_SC589_SHARC_Core2" -proc ADSP-SC589 -flags-compiler --no_wrap_diagnostics -si-revision any -g -DCORE2 -D_DEBUG -structs-do-not-overlap -no-const-strings -no-multiline -warn-protos -double-size-32 -char-size-8 -swc -absolute-path-dependencies -gnu-style-dependencies -MD -Mo "src/empty_main.d" -o "src/empty_main.doj" "../src/empty_main.c"
+'Finished building: ../src/empty_main.c'
+' '
+'Building target: ADC_DAC_Playback_SC589_SHARC_Core2.dxe'
+'Invoking: CrossCore SHARC Linker'
+cc21k -proc ADSP-SC589 -si-revision any -no-mem -flags-link -MDCORE2,-MDOTHERCORE,-MDDEBUG -add-debug-libpaths -o ADC_DAC_Playback_SC589_SHARC_Core2.dxe @input-file.txt   -flags-link -od,.\.
+'Finished building target: ADC_DAC_Playback_SC589_SHARC_Core2.dxe'
+' '
 
-09:36:59 Build Finished (took 103ms)
+08:03:50 Build Finished (took 1s.20ms)
 

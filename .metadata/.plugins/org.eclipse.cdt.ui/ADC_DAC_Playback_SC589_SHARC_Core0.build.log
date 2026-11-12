@@ -1,6 +1,25 @@
-09:36:58 **** Incremental Build of configuration Debug for project ADC_DAC_Playback_SC589_SHARC_Core0 ****
+08:03:48 **** Build of configuration Debug for project ADC_DAC_Playback_SC589_SHARC_Core0 ****
 make all 
-make: Nothing to be done for `all'.
+'Building file: ../system/sru/sru_config.c'
+'Invoking: CrossCore ARM Bare Metal C Compiler'
+arm-none-eabi-gcc -g -gdwarf-2 -ffunction-sections -fdata-sections -DCORE0 -D_DEBUG @includes-e64be1689249daad5bbc9712ff709209.txt -Wall -c -mproc=ADSP-SC589 -msi-revision=any -MMD -MP -MF"system/sru/sru_config.d" -o  "system/sru/sru_config.o" "../system/sru/sru_config.c"
+'Finished building: ../system/sru/sru_config.c'
+' '
+'Building file: ../system/adi_initialize.c'
+'Invoking: CrossCore ARM Bare Metal C Compiler'
+arm-none-eabi-gcc -g -gdwarf-2 -ffunction-sections -fdata-sections -DCORE0 -D_DEBUG @includes-e64be1689249daad5bbc9712ff709209.txt -Wall -c -mproc=ADSP-SC589 -msi-revision=any -MMD -MP -MF"system/adi_initialize.d" -o  "system/adi_initialize.o" "../system/adi_initialize.c"
+'Finished building: ../system/adi_initialize.c'
+' '
+'Building file: ../src/initialize_cores.c'
+'Invoking: CrossCore ARM Bare Metal C Compiler'
+arm-none-eabi-gcc -g -gdwarf-2 -ffunction-sections -fdata-sections -DCORE0 -D_DEBUG @includes-e64be1689249daad5bbc9712ff709209.txt -Wall -c -mproc=ADSP-SC589 -msi-revision=any -MMD -MP -MF"src/initialize_cores.d" -o  "src/initialize_cores.o" "../src/initialize_cores.c"
+'Finished building: ../src/initialize_cores.c'
+' '
+'Building target: ADC_DAC_Playback_SC589_SHARC_Core0'
+'Invoking: CrossCore ARM Bare Metal C Linker'
+arm-none-eabi-gcc -mproc=ADSP-SC589 -msi-revision=any -Wl,--gc-sections -mdebug-libs -o  "ADC_DAC_Playback_SC589_SHARC_Core0" @input-file.txt -lm
+'Finished building target: ADC_DAC_Playback_SC589_SHARC_Core0'
+' '
 
-09:36:58 Build Finished (took 106ms)
+08:03:49 Build Finished (took 849ms)
 
