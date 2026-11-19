@@ -202,7 +202,6 @@ static void e4_fft_cplx(my_complex *X)
     int        span;
     int        step;
     my_complex t;
-    my_complex w;
 
     /* ---- 位反序置换 ---- */
     j = 0;
@@ -235,11 +234,21 @@ static void e4_fft_cplx(my_complex *X)
         {
             for (j = 0; j < half; j++)
             {
-                w = e4_tw[j * step];
-                t = mc_mul(X[i + j + half], w);
+                int   a = i + j;
+                int   b = a + half;
+                float wr = e4_tw[j * step].re;
+                float wi = e4_tw[j * step].im;
+                float xr = X[b].re;
+                float xi = X[b].im;
+                float tr = (xr * wr) - (xi * wi);
+                float ti = (xr * wi) + (xi * wr);
+                float ar = X[a].re;
+                float ai = X[a].im;
 
-                X[i + j + half] = mc_sub(X[i + j], t);
-                X[i + j]        = mc_add(X[i + j], t);
+                X[b].re = ar - tr;
+                X[b].im = ai - ti;
+                X[a].re = ar + tr;
+                X[a].im = ai + ti;
             }
         }
     }
@@ -343,7 +352,13 @@ static void e4_os256_process(E4_OS256 *s, E4_WORK *w, const float *x, float *y)
 
     for (i = 0; i < E4_FFT_N; i++)
     {
-        w->Y[i] = mc_mul(w->X[i], s->H[i]);
+        float xr = w->X[i].re;
+        float xi = w->X[i].im;
+        float hr = s->H[i].re;
+        float hi = s->H[i].im;
+
+        w->Y[i].re = (xr * hr) - (xi * hi);
+        w->Y[i].im = (xr * hi) + (xi * hr);
     }
 
     e4_ifft_cplx(w->Y);
@@ -395,7 +410,13 @@ static void e4_os1024_process(E4_OS1024 *s, E4_WORK *w, const float *x, float *y
 
         for (k = 0; k < E4_FFT_N; k++)
         {
-            w->Y[k] = mc_add(w->Y[k], mc_mul(src[k], s->H[p][k]));
+            float xr = src[k].re;
+            float xi = src[k].im;
+            float hr = s->H[p][k].re;
+            float hi = s->H[p][k].im;
+
+            w->Y[k].re += (xr * hr) - (xi * hi);
+            w->Y[k].im += (xr * hi) + (xi * hr);
         }
     }
 

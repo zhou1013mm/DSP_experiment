@@ -186,7 +186,13 @@ to the terms of the associated Analog Devices License Agreement.
                                 * Blackfin 没有 trans.h，那部分会自动跳过。 */
 
 // E4
-#define E4_OVERLAP_SAVE        /* 实时重叠保留法 FIR（48 kHz 演示）：
-                                *   255 阶（256 点）+ 1023 阶（4×256 分区）
-                                *   两套同时跑，一次 debug 采完数据 */
-//#define E4_OUTPUT_PARTITION  /* DAC 输出改用 1023 阶分区结果；默认输出 255 阶 */
+#define E4_OVERLAP_SAVE        /* 实时重叠保留法 FIR（48 kHz 演示） */
+
+/* E4 分两次采数据：默认只实时跑 255 阶；第二次把下面这行
+ * #define E4_MODE_1024 的注释去掉，就会自动关掉 E4_MODE_256。
+ * 两套的逐点 FIR 耗时和误差仍在 E4_Init() 里一起测，所以 gE4Timing
+ * 两次都会包含 OS256/Dir256/OS1024/Dir1024 四组数据。 */
+//#define E4_MODE_1024         /* 第二次采数据：1023 阶 4 分区 */
+#ifndef E4_MODE_1024
+#define E4_MODE_256            /* 第一次采数据：255 阶 */
+#endif

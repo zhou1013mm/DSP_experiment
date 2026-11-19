@@ -1,28 +1,33 @@
 %% ========================================================================
-%  analyze_e4.m  ——  E4 重叠保留法 FIR：频谱 + 耗时 一次性分析
+%  analyze_e4.m  ——  E4 重叠保留法 FIR：频谱 + 耗时 分析
 %
-%  一次 debug、一次导出，就能得到实验报告要的全部图：
-%      1) 时域：raw / 255 阶重叠保留 / 1023 阶 4 分区
-%      2) 频谱：raw / 255 阶 / 1023 阶（Welch，标出 1k、2k、6k）
-%      3) 滤波器幅频响应：255 阶 vs 1023 阶（fc = 2 kHz）
-%      4) 耗时：重叠保留 vs 逐点 FIR 的 cycles/块，以及加速比
+%  E4 分两次采数据，头文件里二选一：
+%      #define E4_MODE_256      -> 第一次，只实时跑 255 阶
+%      #define E4_MODE_1024     -> 第二次，只实时跑 1023 阶 4 分区
+%  每次采完把 4 个变量导出到同一目录，运行本脚本即可。
+%  脚本会读 gE4Timing[12] 判断本次是 256 还是 1024 模式，
+%  并生成带 _256 / _1024 后缀的图，两次数据不会互相覆盖。
+%
+%  图：
+%      1) E4_time_<mode>.png            时域：raw vs 本次滤波输出
+%      2) E4_spectrum_<mode>.png        频谱：raw vs 本次输出，标 1k/2k/6k
+%      3) E4_filter_response.png        255 阶 vs 1023 阶幅频响应
+%      4) E4_timing.png                 OS vs 逐点 FIR 的 cycles/块
 %
 %  ------------------------------------------------------------------------
 %  在 CCES 里 Debug 暂停后，从同一次运行导出下面 4 个变量
 %  （右键变量 -> Export，格式选“每行一个字节”，小端）：
 %
-%      gRawCapture.dat              int16，CAPTURE_TOTAL_SAMPLES 个
-%      gProcessedCapture.dat        int16，255 阶重叠保留输出
-%      gProcessed1024Capture.dat    int16，1023 阶 4 分区输出
-%      gE4Timing.dat                float，12 个（顺序见 .c 里的注释）
+%      gRawCapture.dat              int16
+%      gProcessedCapture.dat        int16，本次模式的输出
+%      gProcessed1024Capture.dat    int16，1024 模式下为输出；256 模式下为 0
+%      gE4Timing.dat                float，13 个（顺序见 .c 里的注释）
 %
 %  把这 4 个 .dat 和本脚本放在同一目录，直接运行即可。
-%  图会保存成 E4_time.png / E4_spectrum.png /
-%            E4_filter_response.png / E4_timing.png
 %
 %  说明：
 %    - 本工程按 48 kHz 演示，FS 固定 48000；
-%    - processed 比 raw 晚约 8 ms（255 阶）/ 16 ms（1023 阶），
+%    - 256 模式输出比 raw 晚约 8 ms，1024 模式约 16 ms，
 %      时域图没有做对齐，频谱不受影响；
 %    - 如果 gE4Timing.dat 里 cycle 全为 0，说明当前核不是 SHARC
 %      （Blackfin 没有 cycle_count.h），脚本会跳过耗时柱状图。
@@ -46,81 +51,94 @@ fprintf('读取数据文件：\n');
 raw   = read_mem('gRawCapture.dat',           'int16',  CAPTURE_TOTAL_SAMPLES);
 p256  = read_mem('gProcessedCapture.dat',     'int16',  CAPTURE_TOTAL_SAMPLES);
 p1024 = read_mem('gProcessed1024Capture.dat', 'int16',  CAPTURE_TOTAL_SAMPLES);
-tim   = read_mem('gE4Timing.dat',             'single', 12);
+tim   = read_mem('gE4Timing.dat',             'single', 13);
 
 if isempty(raw) || isempty(p256)
     error(['缺少 gRawCapture.dat 或 gProcessedCapture.dat。' ...
            '请按 E3 的方式从 CCES 导出“每行一个字节”的 .dat 文件。']);
 end
-if isempty(p1024)
-    warning('没有 gProcessed1024Capture.dat，1023 阶曲线将用 255 阶结果代替。');
-    p1024 = p256;
-end
 if isempty(tim)
     warning('没有 gE4Timing.dat，耗时部分将跳过。');
-    tim = zeros(12,1);
+    tim = zeros(13,1);
 end
-if numel(tim) < 12
-    tim(numel(tim)+1:12) = 0;
+if numel(tim) < 13
+    tim(numel(tim)+1:13) = 0;
 end
 
-% 三个采集数组长度取一致
-n = min([numel(raw), numel(p256), numel(p1024)]);
-raw   = double(raw(1:n));
-p256  = double(p256(1:n));
-p1024 = double(p1024(1:n));
-t_ms  = (0:n-1).' / FS * 1000;
+% 本次实时模式：gE4Timing[12] = 256 或 1024
+mode = round(tim(13));
+if (mode ~= 256) && (mode ~= 1024)
+    if ~isempty(p1024) && any(p1024 ~= 0)
+        mode = 1024;
+    else
+        mode = 256;
+    end
+end
 
-fprintf('  raw   : %d 点（%.1f ms）\n', n, n/FS*1000);
-fprintf('  p256  : %d 点\n', numel(p256));
-fprintf('  p1024 : %d 点\n', numel(p1024));
-fprintf('  timing: %d 个 float\n\n', numel(tim));
+if mode == 1024
+    if isempty(p1024)
+        error('本次是 1024 模式，但缺少 gProcessed1024Capture.dat。');
+    end
+    proc       = p1024;
+    proc_label = '1023 阶 4 分区';
+    tag        = '1024';
+else
+    proc       = p256;
+    proc_label = '255 阶重叠保留';
+    tag        = '256';
+end
+
+% 两个采集数组长度取一致
+n = min([numel(raw), numel(proc)]);
+raw  = double(raw(1:n));
+proc = double(proc(1:n));
+t_ms = (0:n-1).' / FS * 1000;
+
+fprintf('  实时模式: %d 点（%d 阶）\n', mode, mode-1);
+fprintf('  raw     : %d 点（%.1f ms）\n', n, n/FS*1000);
+fprintf('  proc    : %d 点（%s）\n', numel(proc), proc_label);
+fprintf('  timing  : %d 个 float\n\n', numel(tim));
 
 %% ---------------- 1. 时域 ----------------
 fig_time = figure('Name','E4 时域','Color','w','Position',[80 80 1100 650]);
 
 subplot(2,1,1);
-plot(t_ms, raw,   'k', 'LineWidth', 1.0); hold on;
-plot(t_ms, p256,  'b', 'LineWidth', 1.0);
-plot(t_ms, p1024, 'r', 'LineWidth', 1.0);
+plot(t_ms, raw,  'k', 'LineWidth', 1.0); hold on;
+plot(t_ms, proc, 'b', 'LineWidth', 1.0);
 grid on; xlim([0 min(20, t_ms(end))]);
 xlabel('时间 / ms'); ylabel('幅度 / LSB');
-title('E4 时域（前 20 ms，未对齐延迟）');
-legend('raw', '255 阶重叠保留', '1023 阶 4 分区', 'Location', 'best');
+title(sprintf('E4 时域（前 20 ms，%s）', proc_label));
+legend('raw', proc_label, 'Location', 'best');
 
 subplot(2,1,2);
-plot(t_ms, raw,   'k', 'LineWidth', 0.8); hold on;
-plot(t_ms, p256,  'b', 'LineWidth', 0.8);
-plot(t_ms, p1024, 'r', 'LineWidth', 0.8);
+plot(t_ms, raw,  'k', 'LineWidth', 0.8); hold on;
+plot(t_ms, proc, 'b', 'LineWidth', 0.8);
 grid on; xlim([0 t_ms(end)]);
 xlabel('时间 / ms'); ylabel('幅度 / LSB');
-title('E4 时域（整段采集）');
-legend('raw', '255 阶重叠保留', '1023 阶 4 分区', 'Location', 'best');
+title(sprintf('E4 时域（整段采集，%s）', proc_label));
+legend('raw', proc_label, 'Location', 'best');
 
-print(fig_time, 'E4_time.png', '-dpng', '-r200');
+print(fig_time, sprintf('E4_time_%s.png', tag), '-dpng', '-r200');
 
 %% ---------------- 2. 频谱（Welch） ----------------
-[Praw,  F] = welch_psd(raw,   FS);
-[P256,  ~] = welch_psd(p256,  FS);
-[P1024, ~] = welch_psd(p1024, FS);
+[Praw,  F] = welch_psd(raw,  FS);
+[Pproc, ~] = welch_psd(proc, FS);
 
-% 以 raw 的最大谱线为 0 dB，三条曲线用同一把尺子
+% 以 raw 的最大谱线为 0 dB，两条曲线用同一把尺子
 p_ref = max(Praw);
 if p_ref <= 0
     p_ref = 1;
 end
 Praw_db  = 10*log10(Praw  / p_ref);
-P256_db  = 10*log10(P256  / p_ref);
-P1024_db = 10*log10(P1024 / p_ref);
+Pproc_db = 10*log10(Pproc / p_ref);
 
 fig_spec = figure('Name','E4 频谱','Color','w','Position',[100 100 1100 600]);
 plot(F, Praw_db,  'k', 'LineWidth', 1.0); hold on;
-plot(F, P256_db,  'b', 'LineWidth', 1.0);
-plot(F, P1024_db, 'r', 'LineWidth', 1.0);
+plot(F, Pproc_db, 'b', 'LineWidth', 1.0);
 grid on; xlim([0 24000]); ylim([-100 5]);
 xlabel('频率 / Hz'); ylabel('相对幅度 / dB');
-title('E4 频谱（Welch，raw 归一化到 0 dB）');
-legend('raw', '255 阶重叠保留', '1023 阶 4 分区', 'Location', 'best');
+title(sprintf('E4 频谱（Welch，%s）', proc_label));
+legend('raw', proc_label, 'Location', 'best');
 
 yl = ylim;
 for f0 = [1000 2000 6000]
@@ -128,7 +146,7 @@ for f0 = [1000 2000 6000]
     text(f0 + 120, yl(1) + 8, sprintf('%d Hz', f0), 'FontSize', 9);
 end
 
-print(fig_spec, 'E4_spectrum.png', '-dpng', '-r200');
+print(fig_spec, sprintf('E4_spectrum_%s.png', tag), '-dpng', '-r200');
 
 %% ---------------- 3. 滤波器幅频响应 ----------------
 h256  = design_lpf(TAPS1, FC, FS);
@@ -222,14 +240,12 @@ end
 % 6 kHz 衰减（以 raw 为基准）
 idx6 = find(F >= 6000, 1);
 if ~isempty(idx6)
-    fprintf('\n--- 6 kHz 衰减（相对 raw）---\n');
-    fprintf('255 阶          : %.1f dB\n', ...
-            10*log10((P256(idx6)  + eps) / (Praw(idx6) + eps)));
-    fprintf('1023 阶         : %.1f dB\n', ...
-            10*log10((P1024(idx6) + eps) / (Praw(idx6) + eps)));
+    fprintf('\n--- 6 kHz 衰减（相对 raw，%s）---\n', proc_label);
+    fprintf('%s : %.1f dB\n', proc_label, ...
+            10*log10((Pproc(idx6) + eps) / (Praw(idx6) + eps)));
 end
 
-fprintf('\n图已保存：E4_time.png / E4_spectrum.png / E4_filter_response.png');
+fprintf('\n图已保存：E4_time_%s.png / E4_spectrum_%s.png / E4_filter_response.png', tag, tag);
 if have_cycles
     fprintf(' / E4_timing.png\n');
 else

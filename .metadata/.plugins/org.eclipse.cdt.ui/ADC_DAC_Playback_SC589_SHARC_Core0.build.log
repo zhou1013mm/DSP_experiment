@@ -1,4 +1,4 @@
-08:03:48 **** Build of configuration Debug for project ADC_DAC_Playback_SC589_SHARC_Core0 ****
+08:55:29 **** Build of configuration Debug for project ADC_DAC_Playback_SC589_SHARC_Core0 ****
 make all 
 'Building file: ../system/sru/sru_config.c'
 'Invoking: CrossCore ARM Bare Metal C Compiler'
@@ -21,5 +21,5 @@ arm-none-eabi-gcc -mproc=ADSP-SC589 -msi-revision=any -Wl,--gc-sections -mdebug-
 'Finished building target: ADC_DAC_Playback_SC589_SHARC_Core0'
 ' '
 
-08:03:49 Build Finished (took 849ms)
+08:55:30 Build Finished (took 730ms)
 

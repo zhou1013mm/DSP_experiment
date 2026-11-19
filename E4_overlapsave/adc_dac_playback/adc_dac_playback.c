@@ -77,6 +77,12 @@ to the terms of the associated Analog Devices License Agreement.
 #if ((AUDIO_BUFFER_SIZE / (SAMPLE_SIZE * NUM_CHANNELS)) != E4_FRAMES_PER_CALL)
 #error "E4: AUDIO_BUFFER_SIZE must be 64 frames per channel per callback"
 #endif
+#if defined(E4_MODE_256) && defined(E4_MODE_1024)
+#error "E4: E4_MODE_256 and E4_MODE_1024 cannot be defined at the same time"
+#endif
+#if !defined(E4_MODE_256) && !defined(E4_MODE_1024)
+#error "E4: define exactly one of E4_MODE_256 / E4_MODE_1024"
+#endif
 #endif
 
 
@@ -176,15 +182,16 @@ static float        gE4D1024[E4_HOP];
 static int          gE4Inited = 0;
 static uint32_t     gE4BlockCount = 0u;
 
-/* 导出的耗时/误差汇总，MATLAB 脚本按这 12 个 float 读：
+/* 导出的耗时/误差汇总，MATLAB 脚本按这 13 个 float 读：
  *   [0] OS256      cycles/块     [1] 逐点 256  cycles/块
  *   [2] OS1024     cycles/块     [3] 逐点 1024 cycles/块
  *   [4] 256 加速比               [5] 1024 加速比
  *   [6] 已处理块数               [7] 256 最大相对误差
  *   [8] 1024 最大相对误差        [9] 256 最大绝对误差
  *   [10] 1024 最大绝对误差       [11] 采样率 Hz
+ *   [12] 本次实时模式：256 或 1024
  */
-volatile float      gE4Timing[12] = {0.0f};
+volatile float      gE4Timing[13] = {0.0f};
 
 /* 调试用：看实时链路走到哪一步
  *   [0] ProcessBuffers 进入 E4 段的次数
@@ -200,6 +207,10 @@ volatile float      gE4Timing[12] = {0.0f};
  *   [15] 第一块 OS1024 的 cycles
  */
 volatile uint32_t   gE4Debug[16] = {0u};
+
+/* 代码版本标记：下载后先看它是不是 20261119。
+ * 如果不是，说明 CCES 编的是旧的 source 副本，不是当前工作区这份。 */
+volatile uint32_t   gE4CodeVersion = 20261119u;
 
 /* 每个回调对应的 1023 阶输出，供 CAPTURE_FOR_REPORT 抓包 */
 volatile float      gE4Out1024Frame[E4_FRAMES_PER_CALL];
@@ -418,6 +429,11 @@ static void E4_Init(void)
 #endif
 	gE4Timing[6]  = 0.0f;
 	gE4Timing[11] = E4_FS_HZ;
+#ifdef E4_MODE_256
+	gE4Timing[12] = 256.0f;
+#else
+	gE4Timing[12] = 1024.0f;
+#endif
 
 	/* 清掉测试历史，正式音频从零状态开始 */
 	memset(gE4OS256.x_hist,  0, sizeof(gE4OS256.x_hist));
@@ -431,6 +447,8 @@ static void E4_Init(void)
 	gE4InCount = 0;
 	gE4OutRd   = 0;
 
+	printf("E4 code version=%lu, mode=%d\r\n",
+			(unsigned long)gE4CodeVersion, (int)gE4Timing[12]);
 	printf("E4 bench: OS256=%.0f  Dir256=%.0f  OS1024=%.0f  Dir1024=%.0f  speed=%.2fx / %.2fx\r\n",
 			(double)gE4Timing[0], (double)gE4Timing[1],
 			(double)gE4Timing[2], (double)gE4Timing[3],
@@ -1378,10 +1396,10 @@ uint32_t ProcessBuffers(void)
 		 * 每 4 次回调（4 × 64 = 256 点）处理一块：
 		 *   1) 把新来的 256 点接到上一帧后面，组成 512 点的 frame；
 		 *   2) FFT -> 乘 H -> IFFT，丢掉前 256 点，保留后 256 点；
-		 *   3) 同时跑一套 1023 阶、4×256 分区的重叠保留法；
-		 *   4) 两套结果都和同阶逐点 FIR 对比，并记录 cycle 耗时。
+		 *   3) 按 E4_MODE_256 / E4_MODE_1024 二选一，只实时跑其中一套；
+		 *      两套的逐点 FIR 耗时/误差在 E4_Init() 里一起测。
 		 *
-		 * 输出默认用 255 阶结果；定义 E4_OUTPUT_PARTITION 可改成 1023 阶。
+		 * 256 模式输出 255 阶结果；1024 模式输出 1023 阶 4 分区结果。
 		 * 1023 阶结果另外放进 gE4Out1024Frame，供 CAPTURE_FOR_REPORT 抓包。
 		 * ------------------------------------------------------------ */
 		{
@@ -1411,10 +1429,10 @@ uint32_t ProcessBuffers(void)
 				gE4BlockCount++;
 				gE4Debug[1]++;
 
-				/* 实时链路只跑两套重叠保留法。
-				 * 逐点 FIR 的 cycles 和误差已经在 E4_Init() 里用 5 个
-				 * 测试块测好；Debug 下 1024 阶逐点 FIR 很慢，放在每个
-				 * 音频块里会超过 4 个回调（5.33 ms），ADC/DAC 会停。 */
+				/* 按 E4_MODE_256 / E4_MODE_1024 二选一，只跑其中一套。
+				 * 两套的逐点 FIR 耗时和误差已经在 E4_Init() 里测好，
+				 * 这里不再跑逐点 FIR，避免 Debug 下拖垮音频块。 */
+#ifdef E4_MODE_256
 #ifdef __ADSP21000__
 				if (gE4BlockCount == 1u)
 				{
@@ -1430,7 +1448,8 @@ uint32_t ProcessBuffers(void)
 				}
 #endif
 				gE4Debug[2]++;
-
+				memcpy(gE4Out256, gE4Y256, sizeof(gE4Out256));
+#else
 #ifdef __ADSP21000__
 				if (gE4BlockCount == 1u)
 				{
@@ -1446,9 +1465,8 @@ uint32_t ProcessBuffers(void)
 				}
 #endif
 				gE4Debug[3]++;
-
-				memcpy(gE4Out256,  gE4Y256,  sizeof(gE4Out256));
 				memcpy(gE4Out1024, gE4Y1024, sizeof(gE4Out1024));
+#endif
 
 				gE4Timing[6]  = (float)gE4BlockCount;
 				gE4Timing[11] = E4_FS_HZ;
@@ -1457,19 +1475,14 @@ uint32_t ProcessBuffers(void)
 			/* 每次回调取 64 点送 DAC；输出 FIFO 空时先送 0 */
 			for (j = 0; j < n_frames; j++)
 			{
-				float v256;
-				float v1024;
 				float vout;
 
-				v256  = (gE4OutRd < E4_HOP) ? gE4Out256[gE4OutRd]  : 0.0f;
-				v1024 = (gE4OutRd < E4_HOP) ? gE4Out1024[gE4OutRd] : 0.0f;
-
-				gE4Out1024Frame[j] = v1024;
-
-#ifdef E4_OUTPUT_PARTITION
-				vout = v1024;
+#ifdef E4_MODE_256
+				vout = (gE4OutRd < E4_HOP) ? gE4Out256[gE4OutRd] : 0.0f;
+				gE4Out1024Frame[j] = 0.0f;
 #else
-				vout = v256;
+				vout = (gE4OutRd < E4_HOP) ? gE4Out1024[gE4OutRd] : 0.0f;
+				gE4Out1024Frame[j] = vout;
 #endif
 				for (c = 0; c < NUM_CHANNELS; c++)
 				{

@@ -1,4 +1,4 @@
-08:03:49 **** Build of configuration Debug for project ADC_DAC_Playback_SC589_SHARC_Core2 ****
+08:55:30 **** Build of configuration Debug for project ADC_DAC_Playback_SC589_SHARC_Core2 ****
 make all 
 'Building file: ../src/empty_main.c'
 'Invoking: CrossCore SHARC C/C++ Compiler'
@@ -11,5 +11,5 @@ cc21k -proc ADSP-SC589 -si-revision any -no-mem -flags-link -MDCORE2,-MDOTHERCOR
 'Finished building target: ADC_DAC_Playback_SC589_SHARC_Core2.dxe'
 ' '
 
-08:03:50 Build Finished (took 1s.20ms)
+08:55:31 Build Finished (took 976ms)
 

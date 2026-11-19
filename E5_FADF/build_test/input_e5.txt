@@ -1,0 +1,8 @@
+"D:\DSP_experiment\E5_FADF\build_test\adc_dac_playback.doj"
+"C:\Analog Devices\ADSP-SC5xx_EZ-KIT_Lite-Rel2.0.2\ADSP-SC5xx_EZ-KIT\Examples\drivers\adc\adau1979\adc_dac_playback\SC589\sharc\adc_dac_playback_Core1\Debug\src\SoftConfig_SC589.doj"
+"C:\Analog Devices\ADSP-SC5xx_EZ-KIT_Lite-Rel2.0.2\ADSP-SC5xx_EZ-KIT\Examples\drivers\adc\adau1979\adc_dac_playback\SC589\sharc\adc_dac_playback_Core1\Debug\system\SC5xx_EZ-Kit\drivers\adc\adau1979\adi_adau1979.doj"
+"C:\Analog Devices\ADSP-SC5xx_EZ-KIT_Lite-Rel2.0.2\ADSP-SC5xx_EZ-KIT\Examples\drivers\adc\adau1979\adc_dac_playback\SC589\sharc\adc_dac_playback_Core1\Debug\system\SC5xx_EZ-Kit\drivers\dac\adau1962a\adi_adau1962a.doj"
+"C:\Analog Devices\ADSP-SC5xx_EZ-KIT_Lite-Rel2.0.2\ADSP-SC5xx_EZ-KIT\Examples\drivers\adc\adau1979\adc_dac_playback\SC589\sharc\adc_dac_playback_Core1\Debug\system\adi_initialize.doj"
+"C:\Analog Devices\ADSP-SC5xx_EZ-KIT_Lite-Rel2.0.2\ADSP-SC5xx_EZ-KIT\Examples\drivers\adc\adau1979\adc_dac_playback\SC589\sharc\adc_dac_playback_Core1\Debug\system\startup_ldf\app_IVT.doj"
+"C:\Analog Devices\ADSP-SC5xx_EZ-KIT_Lite-Rel2.0.2\ADSP-SC5xx_EZ-KIT\Examples\drivers\adc\adau1979\adc_dac_playback\SC589\sharc\adc_dac_playback_Core1\Debug\system\startup_ldf\app_heaptab.doj"
+"C:\Analog Devices\ADSP-SC5xx_EZ-KIT_Lite-Rel2.0.2\ADSP-SC5xx_EZ-KIT\Examples\drivers\adc\adau1979\adc_dac_playback\SC589\sharc\adc_dac_playback_Core1\Debug\system\startup_ldf\app_startup.doj"
